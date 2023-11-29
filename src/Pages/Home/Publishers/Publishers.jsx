@@ -12,33 +12,46 @@ const Publishers = () => {
                 </div>
                 <div className="grid w-full grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
                     <div className="space-y-4">
-                        <img alt="" className="object-cover h-56 mx-auto mb-4 bg-center rounded-sm bg-gray-500" src="https://source.unsplash.com/240x320/?portrait?0" />
+                        <img 
+                        className="object-cover h-56 mx-auto mb-4 bg-center rounded-sm bg-gray-500" 
+                        src="https://i.ibb.co/xYYddkb/unnamed.jpg" 
+                        />
                         <div className="flex flex-col items-center">
-                            <h4 className="text-xl font-semibold">Leroy Jenkins</h4>
-                            <p className="text-sm text-gray-600">Web developer</p>
+                            <h4 className="text-xl font-semibold">Fazlul Karim Hridoy</h4>
+                            <p className="text-sm text-gray-600">Senior Journalist</p>
                         </div>
                     </div>
                     <div className="space-y-4">
-                        <img alt="" className="object-cover h-56 mx-auto mb-4 bg-center rounded-sm bg-gray-500" src="https://source.unsplash.com/240x320/?portrait?1" />
+                        <img
+                            className="object-cover h-56 mx-auto mb-4 bg-center rounded-sm bg-gray-500"
+                            src="https://i.ibb.co/VS6X8CH/IMG-20211002-0001.jpg"
+                        />
                         <div className="flex flex-col items-center">
-                            <h4 className="text-xl font-semibold">Leroy Jenkins</h4>
-                            <p className="text-sm text-gray-600">Web developer</p>
+                            <h4 className="text-xl font-semibold">Hridoy</h4>
+                            <p className="text-sm text-gray-600">Junior Journalist</p>
                         </div>
                     </div>
                     <div className="space-y-4">
-                        <img alt="" className="object-cover h-56 mx-auto mb-4 bg-center rounded-sm bg-gray-500" src="https://source.unsplash.com/240x320/?portrait?2" />
+                        <img 
+                        className="object-cover h-56 mx-auto mb-4 bg-center rounded-sm bg-gray-500" 
+                        src="https://i.ibb.co/xYYddkb/unnamed.jpg" 
+                        />
                         <div className="flex flex-col items-center">
-                            <h4 className="text-xl font-semibold">Leroy Jenkins</h4>
-                            <p className="text-sm text-gray-600">Web developer</p>
+                            <h4 className="text-xl font-semibold">Fazlul Karim Hridoy</h4>
+                            <p className="text-sm text-gray-600">Senior Journalist</p>
                         </div>
                     </div>
                     <div className="space-y-4">
-                        <img alt="" className="object-cover h-56 mx-auto mb-4 bg-center rounded-sm bg-gray-500" src="https://source.unsplash.com/240x320/?portrait?3" />
+                        <img
+                            className="object-cover h-56 mx-auto mb-4 bg-center rounded-sm bg-gray-500"
+                            src="https://i.ibb.co/VS6X8CH/IMG-20211002-0001.jpg"
+                        />
                         <div className="flex flex-col items-center">
-                            <h4 className="text-xl font-semibold">Leroy Jenkins</h4>
-                            <p className="text-sm text-gray-600">Web developer</p>
+                            <h4 className="text-xl font-semibold">Hridoy</h4>
+                            <p className="text-sm text-gray-600">Junior Journalist</p>
                         </div>
                     </div>
+
                 </div>
             </div>
         </section>

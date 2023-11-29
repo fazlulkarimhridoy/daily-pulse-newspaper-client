@@ -7,7 +7,6 @@ const NavBar = () => {
     // states and hooks
     const { user, logout } = useContext(AuthContext);
 
-    const fullName = user?.displayName;
     const firebaseEmail = user?.email;
     const userImage = user?.photoURL;
 
@@ -27,6 +26,7 @@ const NavBar = () => {
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/allArticles">All Articles</NavLink></li>
         <li><NavLink to="/addArticles">Add Articles</NavLink></li>
+        <li><NavLink to="/pendingArticles">Pending Articles</NavLink></li>
         <li><NavLink to="/myArticles">My Articles</NavLink></li>
         <li><NavLink to="/subscription">Subscription</NavLink></li>
         <li><NavLink to="/dashboard">Dashboard</NavLink></li>
@@ -38,7 +38,7 @@ const NavBar = () => {
 
 
     return (
-        <div className="navbar px-4 py-6 bg-gray-100">
+        <div className="fixed z-10 container navbar px-4 py-6 bg-emerald-600">
             <div className="navbar-start">
                 {/* drop down menu in image for small devices */}
                 <div className="dropdown">
@@ -58,7 +58,7 @@ const NavBar = () => {
             </div>
             {/* links for medium and larger devices */}
             <div className="navbar-center hidden lg:flex">
-                <ul id="link2" className="menu menu-horizontal px-1 gap-2">
+                <ul id="link2" className="menu menu-horizontal px-1 gap-2 text-white">
                     {links}
                 </ul>
             </div>
@@ -74,7 +74,7 @@ const NavBar = () => {
                                         alt="user_photo" />
                                 </button>
                             </label>
-                            <ul tabIndex={0} className="dropdown-content z-[1] p-4 shadow bg-gray-100 rounded-box w-60">
+                            <ul tabIndex={0} className="dropdown-content z-[1] p-4 shadow bg-green-50 rounded-box w-60">
 
 
                                 {/* <li className="p-3 text-center font-medium rounded-lg mb-3 bg-gray-300">{fullName}</li> */}
@@ -87,7 +87,7 @@ const NavBar = () => {
                             </ul>
                         </div>
                         :
-                        <Link to="/login"><button className="px-6 py-2 rounded-md bg-green-700 text-white hover:bg-lime-500">Login</button></Link>
+                        <Link to="/login"><button className="px-6 py-2 rounded-md bg-sky-700 text-white hover:bg-lime-500"> Login</button></Link>
                 }
 
             </div>

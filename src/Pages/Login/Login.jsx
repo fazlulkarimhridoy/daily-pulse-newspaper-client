@@ -16,12 +16,12 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log("google user", user);
-                if(user.uid){
+                if (user.uid) {
                     Swal.fire({
                         title: "Logged in",
                         text: "Successfully logged in with google",
                         icon: "success"
-                      });
+                    });
                 }
             })
     }
@@ -31,25 +31,25 @@ const Login = () => {
         const email = data.email;
         const password = data.password;
         login(email, password)
-        .then(res=>{
-            const user = res.user;
-            console.log(user);
-            if(user.uid){
-                Swal.fire({
-                    title: "Logged in",
-                    text: "Successfully logged in with email & password",
-                    icon: "success"
-                });
-            }
-        }) 
-        .catch(err=>{
-            console.log(err.error);
-        })       
+            .then(res => {
+                const user = res.user;
+                console.log(user);
+                if (user.uid) {
+                    Swal.fire({
+                        title: "Logged in",
+                        text: "Successfully logged in with email & password",
+                        icon: "success"
+                    });
+                }
+            })
+            .catch(err => {
+                console.log(err.error);
+            })
 
     }
 
     return (
-        <div className="w-full mt-10 mx-auto max-w-lg p-4 border sm:p-8 text-gray-800">
+        <div className="w-full bg-gray-100 mx-auto max-w-lg border mt-10 sm:p-8 text-gray-800">
             <h2 className="mb-3 text-3xl font-semibold text-center">Login to your account</h2>
             <p className="text-sm text-center text-gray-600">Dont have account?
                 <Link to="/register" className="focus:underline hover:underline">Sign up here</Link>

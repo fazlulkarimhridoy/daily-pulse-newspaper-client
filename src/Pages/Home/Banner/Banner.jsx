@@ -1,46 +1,39 @@
-import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+// import axios from "axios";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { AuthContext } from "../../../Providers/AuthProvider";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
 
 
 const Banner = () => {
     // states and loaders
-    const { loading } = useContext(AuthContext);
-    const [bannerData, setBannerData] = useState([]);
+    const axiosPublic = useAxiosPublic();
 
+    // tanstack query
+    const { data, isLoading } = useQuery({
+        queryKey: ["bannerData"],
+        queryFn: async () => {
+            const res = await axiosPublic.get("/articlesByView")
+            return res.data;
+        }
+    })
 
-
-    // useEffect for fetching banner data
-    useEffect(() => {
-        axios.get("http://localhost:5000/articles")
-            .then(res => {
-                const data = res.data;
-                console.log("Banner Data", data);
-                setBannerData(data);
-            })
-    }, [])
-
-    if (loading) {
-        return <div className="flex justify-center mt-20">
-            <div className="flex flex-col gap-4 w-96">
-                <div className="skeleton h-32 w-full"></div>
-                <div className="skeleton h-4 w-56"></div>
-                <div className="skeleton h-4 w-full"></div>
-                <div className="skeleton h-4 w-full"></div>
-            </div>
+    // checking loading state of banner data
+    if (isLoading) {
+        return <div className="flex justify-center mt-28 mb-28 lg:mt-80 lg:mb-60">
+            <progress className="progress w-56"></progress>
         </div>
     }
+
 
     return (
         <section>
             <Carousel dynamicHeight="300px">
                 {
-                    bannerData.map(data => <div key={data._id}>
+                    data?.map(data => <div key={data._id}>
                         <img src={data.image} />
                         <p className="legend h-[50px]">{data.title}</p>
-                    </div>)
+                    </div>).slice(0,6)
                 }
             </Carousel>
         </section>

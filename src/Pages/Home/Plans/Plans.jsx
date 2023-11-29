@@ -10,7 +10,7 @@ const Plans = () => {
             </div>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:items-stretch md:grid-cols-3 md:gap-8">
                 {/* first plan */}
-                <div className="divide-y divide-gray-200 rounded-2xl border border-gray-200 shadow-sm">
+                <div className="divide-y divide-gray-200 rounded-2xl border-2 hover:shadow-md  hover:duration-500">
                     <div className="p-6 sm:px-8">
                         <h2 className="text-lg font-medium text-gray-900">
                             Starter
@@ -30,7 +30,7 @@ const Plans = () => {
                         </p>
 
                         <a
-                            className="mt-4 block rounded border border-indigo-600 bg-indigo-600 px-12 py-3 text-center text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500 sm:mt-6"
+                            className="mt-4 block rounded border border-green-600 bg-green-600 px-12 py-3 text-center text-sm font-medium text-white hover:bg-transparent hover:text-green-600 focus:outline-none focus:ring active:text-green-500 sm:mt-6"
                             href="#"
                         >
                             Get Started
@@ -50,7 +50,7 @@ const Plans = () => {
                                     viewBox="0 0 24 24"
                                     strokeWidth="1.5"
                                     stroke="currentColor"
-                                    className="h-5 w-5 text-indigo-700"
+                                    className="h-5 w-5 text-green-700"
                                 >
                                     <path
                                         strokeLinecap="round"
@@ -69,7 +69,7 @@ const Plans = () => {
                                     viewBox="0 0 24 24"
                                     strokeWidth="1.5"
                                     stroke="currentColor"
-                                    className="h-5 w-5 text-indigo-700"
+                                    className="h-5 w-5 text-green-700"
                                 >
                                     <path
                                         strokeLinecap="round"
@@ -88,7 +88,7 @@ const Plans = () => {
                                     viewBox="0 0 24 24"
                                     strokeWidth="1.5"
                                     stroke="currentColor"
-                                    className="h-5 w-5 text-indigo-700"
+                                    className="h-5 w-5 text-green-700"
                                 >
                                     <path
                                         strokeLinecap="round"
@@ -161,7 +161,7 @@ const Plans = () => {
                 </div>
 
                 {/* second plan */}
-                <div className="divide-y divide-gray-200 rounded-2xl border border-gray-200 shadow-sm">
+                <div className="divide-y divide-gray-200 rounded-2xl border-2 hover:shadow-md  hover:duration-500">
                     <div className="p-6 sm:px-8">
                         <h2 className="text-lg font-medium text-gray-900">
                             Pro
@@ -181,7 +181,7 @@ const Plans = () => {
                         </p>
 
                         <a
-                            className="mt-4 block rounded border border-indigo-600 bg-indigo-600 px-12 py-3 text-center text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500 sm:mt-6"
+                            className="mt-4 block rounded border border-green-600 bg-green-600 px-12 py-3 text-center text-sm font-medium text-white hover:bg-transparent hover:text-green-600 focus:outline-none focus:ring active:text-green-500 sm:mt-6"
                             href="#"
                         >
                             Get Started
@@ -201,7 +201,7 @@ const Plans = () => {
                                     viewBox="0 0 24 24"
                                     strokeWidth="1.5"
                                     stroke="currentColor"
-                                    className="h-5 w-5 text-indigo-700"
+                                    className="h-5 w-5 text-green-700"
                                 >
                                     <path
                                         strokeLinecap="round"
@@ -220,7 +220,7 @@ const Plans = () => {
                                     viewBox="0 0 24 24"
                                     strokeWidth="1.5"
                                     stroke="currentColor"
-                                    className="h-5 w-5 text-indigo-700"
+                                    className="h-5 w-5 text-green-700"
                                 >
                                     <path
                                         strokeLinecap="round"
@@ -239,7 +239,7 @@ const Plans = () => {
                                     viewBox="0 0 24 24"
                                     strokeWidth="1.5"
                                     stroke="currentColor"
-                                    className="h-5 w-5 text-indigo-700"
+                                    className="h-5 w-5 text-green-700"
                                 >
                                     <path
                                         strokeLinecap="round"
@@ -258,7 +258,7 @@ const Plans = () => {
                                     viewBox="0 0 24 24"
                                     strokeWidth="1.5"
                                     stroke="currentColor"
-                                    className="h-5 w-5 text-indigo-700"
+                                    className="h-5 w-5 text-green-700"
                                 >
                                     <path
                                         strokeLinecap="round"
@@ -312,7 +312,7 @@ const Plans = () => {
                 </div>
 
                 {/* third plan */}
-                <div className="divide-y divide-gray-200 rounded-2xl border border-gray-200 shadow-sm">
+                <div className="divide-y divide-gray-200 rounded-2xl border-2 hover:shadow-md  hover:duration-500">
                     <div className="p-6 sm:px-8">
                         <h2 className="text-lg font-medium text-gray-900">
                             Enterprise
@@ -332,7 +332,7 @@ const Plans = () => {
                         </p>
 
                         <a
-                            className="mt-4 block rounded border border-indigo-600 bg-indigo-600 px-12 py-3 text-center text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500 sm:mt-6"
+                            className="mt-4 block rounded border border-green-600 bg-green-600 px-12 py-3 text-center text-sm font-medium text-white hover:bg-transparent hover:text-green-600 focus:outline-none focus:ring active:text-green-500 sm:mt-6"
                             href="#"
                         >
                             Get Started
@@ -352,7 +352,7 @@ const Plans = () => {
                                     viewBox="0 0 24 24"
                                     strokeWidth="1.5"
                                     stroke="currentColor"
-                                    className="h-5 w-5 text-indigo-700"
+                                    className="h-5 w-5 text-green-700"
                                 >
                                     <path
                                         strokeLinecap="round"
@@ -371,7 +371,7 @@ const Plans = () => {
                                     viewBox="0 0 24 24"
                                     strokeWidth="1.5"
                                     stroke="currentColor"
-                                    className="h-5 w-5 text-indigo-700"
+                                    className="h-5 w-5 text-green-700"
                                 >
                                     <path
                                         strokeLinecap="round"
@@ -390,7 +390,7 @@ const Plans = () => {
                                     viewBox="0 0 24 24"
                                     strokeWidth="1.5"
                                     stroke="currentColor"
-                                    className="h-5 w-5 text-indigo-700"
+                                    className="h-5 w-5 text-green-700"
                                 >
                                     <path
                                         strokeLinecap="round"
@@ -409,7 +409,7 @@ const Plans = () => {
                                     viewBox="0 0 24 24"
                                     strokeWidth="1.5"
                                     stroke="currentColor"
-                                    className="h-5 w-5 text-indigo-700"
+                                    className="h-5 w-5 text-green-700"
                                 >
                                     <path
                                         strokeLinecap="round"
@@ -428,7 +428,7 @@ const Plans = () => {
                                     viewBox="0 0 24 24"
                                     strokeWidth="1.5"
                                     stroke="currentColor"
-                                    className="h-5 w-5 text-indigo-700"
+                                    className="h-5 w-5 text-green-700"
                                 >
                                     <path
                                         strokeLinecap="round"
@@ -447,7 +447,7 @@ const Plans = () => {
                                     viewBox="0 0 24 24"
                                     strokeWidth="1.5"
                                     stroke="currentColor"
-                                    className="h-5 w-5 text-indigo-700"
+                                    className="h-5 w-5 text-green-700"
                                 >
                                     <path
                                         strokeLinecap="round"
