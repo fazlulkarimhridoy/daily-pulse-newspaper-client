@@ -13,6 +13,7 @@ import PremiumArticles from "../Pages/PremiumArticles/PremiumArticles";
 import MyArticles from "../Pages/MyArticles/MyArticles";
 import UpdateArticle from "../Pages/UpdateArticle/UpdateArticle";
 import ArticleDetails from "../Pages/AllArticles/ArticleDetails/ArticleDetails";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 
 export const router = createBrowserRouter([
@@ -39,29 +40,29 @@ export const router = createBrowserRouter([
       },
       {
         path: "/addArticles",
-        element: <AddArticles></AddArticles>
+        element: <PrivateRoute><AddArticles></AddArticles></PrivateRoute>
       },
       {
         path: "/pendingArticles",
-        element: <PendingArticles></PendingArticles>
+        element: <PrivateRoute><PendingArticles></PendingArticles></PrivateRoute>
       },
       {
         path: "/premiumArticles",
-        element: <PremiumArticles></PremiumArticles>
+        element: <PrivateRoute><PremiumArticles></PremiumArticles></PrivateRoute>
       },
       {
         path: "/myArticles",
-        element: <MyArticles></MyArticles>
+        element: <PrivateRoute><MyArticles></MyArticles></PrivateRoute>
       },
       {
         path: "/updateArticle/:id",
-        element: <UpdateArticle></UpdateArticle>,
-        loader: ({params})=> fetch(`http://localhost:5000/article/${params.id}`)
+        element: <PrivateRoute><UpdateArticle></UpdateArticle></PrivateRoute>,
+        loader: ({ params }) => fetch(`http://localhost:5000/article/${params.id}`)
       },
       {
         path: "/articleDetails/:id",
-        element: <ArticleDetails></ArticleDetails>,
-        loader: ({params})=> fetch(`http://localhost:5000/article/${params.id}`)
+        element: <PrivateRoute><ArticleDetails></ArticleDetails></PrivateRoute>,
+        loader: ({ params }) => fetch(`http://localhost:5000/article/${params.id}`)
       }
     ]
   },

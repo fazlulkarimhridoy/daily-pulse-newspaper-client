@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
@@ -9,6 +9,8 @@ const Login = () => {
     // states & hooks
     const { handleSubmit, register, formState: { errors } } = useForm();
     const { googleRegister, login } = useAuth();
+    const location = useLocation();
+    const navigate = useNavigate();
 
     // google register
     const googleSignIn = () => {
@@ -22,6 +24,7 @@ const Login = () => {
                         text: "Successfully logged in with google",
                         icon: "success"
                     });
+                    navigate(location?.state ? location.state : "/");
                 }
             })
     }
@@ -40,6 +43,7 @@ const Login = () => {
                         text: "Successfully logged in with email & password",
                         icon: "success"
                     });
+                    navigate(location?.state ? location.state : "/");
                 }
             })
             .catch(err => {

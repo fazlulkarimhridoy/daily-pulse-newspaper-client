@@ -49,6 +49,7 @@ const MyArticles = () => {
                         <th>News type</th>
                         <th>Status</th>
                         <th>Update</th>
+                        <th>View</th>
                     </tr>
                 </thead>
                 <tbody>

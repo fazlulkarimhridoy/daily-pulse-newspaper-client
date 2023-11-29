@@ -17,12 +17,7 @@ const AllArticles = () => {
         }
     })
 
-    // handel article details
-    const handleDetails = (id) =>{
-        console.log("clicked", id);
-    }
-
-
+  
     // checking loading state of articles
     if (isLoading) {
         return <div className="flex justify-center mt-28 mb-28 lg:mt-80 lg:mb-60">

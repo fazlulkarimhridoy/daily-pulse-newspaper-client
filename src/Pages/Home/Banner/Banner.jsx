@@ -33,7 +33,7 @@ const Banner = () => {
                     data?.map(data => <div key={data._id}>
                         <img src={data.image} />
                         <p className="legend h-[50px]">{data.title}</p>
-                    </div>).slice(0,6)
+                    </div>).slice(0, 6)
                 }
             </Carousel>
         </section>

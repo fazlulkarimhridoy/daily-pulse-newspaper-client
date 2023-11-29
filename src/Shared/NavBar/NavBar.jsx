@@ -2,13 +2,33 @@ import { Link, NavLink } from "react-router-dom";
 import "./Navbar.css"
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
+import { FaSignInAlt, FaSignOutAlt } from "react-icons/fa";
+// import { useQuery } from "@tanstack/react-query";
+// import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const NavBar = () => {
     // states and hooks
+    // const axiosPublic = useAxiosPublic();
     const { user, logout } = useContext(AuthContext);
 
-    const firebaseEmail = user?.email;
+    const userEmail = user?.email;
     const userImage = user?.photoURL;
+    const userName = user?.displayName;
+
+    // // tanstack query for user information
+    // const { data, isLoading } = useQuery({
+    //     queryKey: ["user"],
+    //     queryFn: async () => {
+    //         const res = await axiosPublic.get(`/user/${firebaseEmail}`)
+    //         return res.data;
+    //     }
+    // })
+
+    // if (isLoading) {
+    //     return <div className="flex justify-center mt-28 mb-28 lg:mt-80 lg:mb-60">
+    //         <progress className="progress w-56"></progress>
+    //     </div>
+    // }
 
 
     // logout
@@ -25,14 +45,15 @@ const NavBar = () => {
     const links = <>
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/allArticles">All Articles</NavLink></li>
-        <li><NavLink to="/addArticles">Add Articles</NavLink></li>
-        <li><NavLink to="/pendingArticles">Pending Articles</NavLink></li>
-        <li><NavLink to="/myArticles">My Articles</NavLink></li>
-        <li><NavLink to="/subscription">Subscription</NavLink></li>
-        <li><NavLink to="/dashboard">Dashboard</NavLink></li>
-        <li><NavLink to="/premiumArticles">Premium Articles</NavLink></li>
         {
-            !user ? <li><NavLink to="/register">Register</NavLink></li> : ""
+            user && <>
+                <li><NavLink to="/addArticles">Add Articles</NavLink></li>
+                <li><NavLink to="/pendingArticles">Pending Articles</NavLink></li>
+                <li><NavLink to="/myArticles">My Articles</NavLink></li>
+                <li><NavLink to="/premiumArticles">Premium Articles</NavLink></li>
+                <li><NavLink to="/subscription">Subscription</NavLink></li>
+                <li><NavLink to="/dashboard">Dashboard</NavLink></li>
+            </>
         }
     </>
 
@@ -78,16 +99,32 @@ const NavBar = () => {
 
 
                                 {/* <li className="p-3 text-center font-medium rounded-lg mb-3 bg-gray-300">{fullName}</li> */}
-                                <li className="p-3 text-center font-medium rounded-lg mb-3 bg-gray-300">{firebaseEmail}</li>
+                                <li className="p-3 text-center font-medium rounded-lg mb-3 bg-gray-300">{userName || "No Name"}</li>
+                                <li className="p-3 text-center font-medium rounded-lg mb-3 bg-gray-300">{userEmail}</li>
                                 <li><Link className="btn w-full mb-3 border bg-gray-300">Visit Profile</Link></li>
-                                <li><button onClick={handleLogout} className="btn w-full bg-orange-700 text-white hover:bg-yellow-500">Logout</button></li>
+                                <li><button onClick={handleLogout} className="btn w-full bg-orange-700 text-white hover:bg-yellow-500">
+                                    <FaSignOutAlt></FaSignOutAlt>
+                                    Logout
+                                </button>
+                                </li>
 
 
 
                             </ul>
                         </div>
                         :
-                        <Link to="/login"><button className="px-6 py-2 rounded-md bg-sky-700 text-white hover:bg-lime-500"> Login</button></Link>
+                        <>
+                            <Link to="/login"><button className="px-6 mr-2 flex items-center gap-2 py-2 rounded-md bg-sky-700 text-white hover:bg-lime-500">
+                                <FaSignInAlt></FaSignInAlt>
+                                Login
+                            </button>
+                            </Link>
+                            <Link to="/register"><button className="px-6 flex items-center gap-2 py-2 rounded-md bg-orange-700 text-white hover:bg-lime-500">
+                                <FaSignInAlt></FaSignInAlt>
+                                Register
+                            </button>
+                            </Link>
+                        </>
                 }
 
             </div>

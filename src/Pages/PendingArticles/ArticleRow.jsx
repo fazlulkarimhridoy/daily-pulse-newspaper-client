@@ -1,4 +1,4 @@
-import { FaEye, FaTimes } from "react-icons/fa";
+import { FaEye, FaRegTrashAlt, FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const ArticleRow = ({ data, handleUpdate, handleDelete, update }) => {
@@ -10,7 +10,7 @@ const ArticleRow = ({ data, handleUpdate, handleDelete, update }) => {
         <tr>
             <th>
                 <button onClick={() => handleDelete(_id)} className="btn btn-circle btn-outline btn-sm">
-                    <FaTimes></FaTimes>
+                    <FaRegTrashAlt></FaRegTrashAlt>
                 </button>
             </th>
             <td>

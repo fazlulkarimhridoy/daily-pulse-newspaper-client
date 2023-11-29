@@ -1,40 +1,77 @@
 import { useForm } from "react-hook-form";
 import { FaGoogle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+
+const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const Register = () => {
     const { googleRegister, createUser } = useAuth();
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const axiosPublic = useAxiosPublic();
+    const location = useLocation();
+    const navigate = useNavigate();
 
 
     // google sign in
     const googleSignIn = () => {
         googleRegister()
             .then(result => {
+                // getting user info
                 const user = result.user;
                 console.log("google user", user);
+                const email = user?.email;
+                const name = user?.displayName;
+                const image = user?.photoURL;
+                const userInfo = { name, email, image }
+                // posting info in database
+                axiosPublic.post("/users", userInfo)
+                    .then(res => {
+                        console.log("user in database", res.data);
+                    })
                 if (user.uid) {
                     Swal.fire({
                         title: "Logged in",
                         text: "Successfully logged in with google",
                         icon: "success"
                     });
+                    navigate(location?.state ? location.state : "/");
                 }
             })
     }
 
 
     // sign up with email & password
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
+        // hosting image in imagebb and getting url
+        const imageFile = { image: data.image[0] };
+
+        const imageResult = await axiosPublic.post(image_hosting_api, imageFile, {
+            headers: {
+                "Content-Type": "multipart/form-data"
+            }
+        });
+
+        // const name = data.name;
+        // const image = imageResult.data.data.display_url;
         const email = data.email;
         const password = data.password;
         createUser(email, password)
             .then(res => {
                 const user = res.user;
-                console.log(user);
-                if(user.uid){
+                console.log("registration user", user);
+                const name = data.name;
+                const email = data.email; 
+                const image = imageResult.data.data.display_url;
+                const registrationInfo = { name, email, image }
+                axiosPublic.post("/users", registrationInfo)
+                    .then(res => {  
+                        console.log("user in database", res.data);
+                    })
+                if (user.uid) {
                     Swal.fire({
                         title: "Signed up",
                         text: "Successfully signed up with email & password",
@@ -42,7 +79,7 @@ const Register = () => {
                     });
                 }
             })
-            .catch(err=>{
+            .catch(err => {
                 console.log(err.error);
             })
     }

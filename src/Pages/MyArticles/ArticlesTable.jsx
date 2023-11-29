@@ -1,4 +1,4 @@
-import { FaTimes, FaToolbox, FaTools } from "react-icons/fa";
+import { FaEye, FaRegTimesCircle, FaRegTrashAlt, FaTimes, FaToolbox, FaTools } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const ArticlesTable = ({ data, handleDelete }) => {
@@ -9,7 +9,7 @@ const ArticlesTable = ({ data, handleDelete }) => {
         <tr>
             <th>
                 <button onClick={() => handleDelete(_id)} className="btn btn-circle btn-outline btn-sm">
-                    <FaTimes></FaTimes>
+                    <FaRegTrashAlt></FaRegTrashAlt>
                 </button>
             </th>
 
@@ -36,7 +36,7 @@ const ArticlesTable = ({ data, handleDelete }) => {
                         <div className="text-blue-600 font-bold hidden lg:flex">Regular News</div>
                 }
             </td>
-            <th>
+            <td>
                 {
                     status === "pending" && <p className="text-yellow-600 font-bold">{status}</p>
                 }
@@ -46,7 +46,7 @@ const ArticlesTable = ({ data, handleDelete }) => {
                 {
                     status === "cancelled" && <p className="text-red-600 font-bold">{status}</p>
                 }
-            </th>
+            </td>
             <td>
                 <Link to={`/updateArticle/${_id}`}>
                     <button className="btn btn-circle btn-outline btn-sm">
@@ -54,6 +54,13 @@ const ArticlesTable = ({ data, handleDelete }) => {
                     </button>
                 </Link>
             </td>
+            <th>
+                <Link to={`/articleDetails/${_id}`}>
+                    <button className="btn btn-circle btn-outline btn-sm">
+                        <FaEye></FaEye>
+                    </button>
+                </Link>
+            </th>
         </tr>
     );
 };
