@@ -1,8 +1,9 @@
 import { useForm } from "react-hook-form";
-import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -11,12 +12,13 @@ const AddArticles = () => {
     // states & hooks
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const { user } = useAuth();
+    const axiosSecure = useAxiosSecure();
     const axiosPublic = useAxiosPublic();
 
     const { data } = useQuery({
         queryKey: ["publishers"],
         queryFn: async () => {
-            const res = await axiosPublic.get("/publishers");
+            const res = await axiosSecure.get("/publishers");
             return res.data;
         }
     })
@@ -63,7 +65,7 @@ const AddArticles = () => {
         const doc = { title, image, tag, description, publisher, publisherImage, views, isPremium, subscriptionPeriod, status, authorEmail }
 
         // sending data to database
-        axiosPublic.post("/articles", doc)
+        axiosSecure.post("/articles", doc)
             .then(res => {
                 const data = res.data;
                 console.log("article data", data);
@@ -176,7 +178,7 @@ const AddArticles = () => {
                                             {...register("tag", { required: true })}
                                             className="w-full border-2 rounded-lg border-gray-200 p-3 text-sm">
                                             <option value="">Select tags</option>
-                                            <option value="gaza street">gaza street</option>
+                                            <option value="gaza streets">gaza streets</option>
                                             <option value="gaza hospitals">gaza hospitals</option>
                                             <option value="gaza sky">gaza sky</option>
                                             <option value="gaza houses">gaza houses</option>

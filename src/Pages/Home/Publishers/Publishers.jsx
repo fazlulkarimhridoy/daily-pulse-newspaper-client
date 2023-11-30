@@ -1,5 +1,20 @@
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
 const Publishers = () => {
+    const axiosPublic = useAxiosPublic();
+    const { data: allPublisher = [], isLoading } = useQuery({
+        queryKey: ["allPublishers"],
+        queryFn: async () => {
+            const res = await axiosPublic.get("/publishers")
+            return res.data;
+        }
+    })
+    if (isLoading) {
+        return <div className="flex justify-center mt-28 mb-28 lg:mt-80 lg:mb-60">
+            <progress className="progress w-56  h-2 lg:h-8 lg:w-80"></progress>
+        </div>
+    }
     return (
         <section className="py-6 text-gray-800">
             <div className="container p-4 mx-auto space-y-16 sm:p-10">
@@ -11,46 +26,18 @@ const Publishers = () => {
                     </p>
                 </div>
                 <div className="grid w-full grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
-                    <div className="space-y-4">
-                        <img 
-                        className="object-cover h-56 mx-auto mb-4 bg-center rounded-sm bg-gray-500" 
-                        src="https://i.ibb.co/xYYddkb/unnamed.jpg" 
-                        />
-                        <div className="flex flex-col items-center">
-                            <h4 className="text-xl font-semibold">Fazlul Karim Hridoy</h4>
-                            <p className="text-sm text-gray-600">Senior Journalist</p>
-                        </div>
-                    </div>
-                    <div className="space-y-4">
-                        <img
-                            className="object-cover h-56 mx-auto mb-4 bg-center rounded-sm bg-gray-500"
-                            src="https://i.ibb.co/VS6X8CH/IMG-20211002-0001.jpg"
-                        />
-                        <div className="flex flex-col items-center">
-                            <h4 className="text-xl font-semibold">Hridoy</h4>
-                            <p className="text-sm text-gray-600">Junior Journalist</p>
-                        </div>
-                    </div>
-                    <div className="space-y-4">
-                        <img 
-                        className="object-cover h-56 mx-auto mb-4 bg-center rounded-sm bg-gray-500" 
-                        src="https://i.ibb.co/xYYddkb/unnamed.jpg" 
-                        />
-                        <div className="flex flex-col items-center">
-                            <h4 className="text-xl font-semibold">Fazlul Karim Hridoy</h4>
-                            <p className="text-sm text-gray-600">Senior Journalist</p>
-                        </div>
-                    </div>
-                    <div className="space-y-4">
-                        <img
-                            className="object-cover h-56 mx-auto mb-4 bg-center rounded-sm bg-gray-500"
-                            src="https://i.ibb.co/VS6X8CH/IMG-20211002-0001.jpg"
-                        />
-                        <div className="flex flex-col items-center">
-                            <h4 className="text-xl font-semibold">Hridoy</h4>
-                            <p className="text-sm text-gray-600">Junior Journalist</p>
-                        </div>
-                    </div>
+                    {
+                        allPublisher?.map(item => <div key={item._id} className="space-y-4">
+                            <img
+                                className="object-cover h-56 w-56 mx-auto mb-4 bg-center rounded-sm bg-gray-500"
+                                src={item.publisherImage}
+                            />
+                            <div className="flex flex-col items-center">
+                                <h4 className="text-xl font-semibold">{item.publisher}</h4>
+                                <p className="text-sm text-gray-600">Publications</p>
+                            </div>
+                        </div>)
+                    }
 
                 </div>
             </div>

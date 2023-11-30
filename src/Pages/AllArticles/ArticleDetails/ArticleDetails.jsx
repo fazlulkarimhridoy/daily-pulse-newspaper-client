@@ -1,4 +1,3 @@
-import { FaEye } from "react-icons/fa";
 import { useLoaderData } from "react-router-dom";
 
 const ArticleDetails = () => {
@@ -40,7 +39,7 @@ const ArticleDetails = () => {
                     </p>
 
                     <div className="mt-4 md:mt-8">
-                        <a className="inline-block rounded bg-emerald-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-emerald-700 focus:outline-none focus:ring focus:ring-yellow-400">
+                        <a className={`inline-block rounded ${isPremium ? "bg-orange-600" : "bg-emerald-600"} px-12 py-3 text-sm font-medium text-white transition ${isPremium ? "hover:bg-orange-700" : "hover:bg-emerald-700"} focus:outline-none focus:ring focus:ring-yellow-400`}>
                             Want to know more?
                         </a>
                     </div>

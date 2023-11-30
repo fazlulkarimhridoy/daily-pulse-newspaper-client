@@ -1,17 +1,20 @@
 import { FaEye, FaRegTimesCircle, FaRegTrashAlt, FaTimes, FaToolbox, FaTools } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-const ArticlesTable = ({ data, handleDelete }) => {
+const ArticlesTable = ({ data, index, handleDelete }) => {
     // hooks and states
     const { _id, title, image, tag, publisher, isPremium, status } = data;
 
     return (
         <tr>
             <th>
+                {index+1}
+            </th>
+            <td>
                 <button onClick={() => handleDelete(_id)} className="btn btn-circle btn-outline btn-sm">
                     <FaRegTrashAlt></FaRegTrashAlt>
                 </button>
-            </th>
+            </td>
 
             <td>
                 <div className="flex items-center gap-3">
@@ -32,8 +35,8 @@ const ArticlesTable = ({ data, handleDelete }) => {
             <td>
                 {
                     isPremium ?
-                        <div className="text-green-600 font-bold hidden lg:flex">Premium News</div> :
-                        <div className="text-blue-600 font-bold hidden lg:flex">Regular News</div>
+                        <div className="text-green-600 font-bold hidden lg:flex">Yes</div> :
+                        <div className="text-sky-600 font-bold hidden lg:flex">No</div>
                 }
             </td>
             <td>
@@ -54,13 +57,13 @@ const ArticlesTable = ({ data, handleDelete }) => {
                     </button>
                 </Link>
             </td>
-            <th>
+            <td>
                 <Link to={`/articleDetails/${_id}`}>
                     <button className="btn btn-circle btn-outline btn-sm">
                         <FaEye></FaEye>
                     </button>
                 </Link>
-            </th>
+            </td>
         </tr>
     );
 };

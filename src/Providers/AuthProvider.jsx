@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import app from "../firebase/firebase.config";
 import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
-import useAxiosPublic from "../hooks/useAxiosPublic";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 // context and auth
 export const AuthContext = createContext(null);
@@ -9,7 +9,7 @@ const auth = getAuth(app)
 
 const AuthProvider = ({ children }) => {
     // states and loaders
-    const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
     const [user, setUser] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -20,18 +20,19 @@ const AuthProvider = ({ children }) => {
             const userEmail = currentUser?.email || user?.email;
             const loggedUser = { email : userEmail }
             setUser(currentUser);
-            setLoading(false);
             if(currentUser){
-                axiosPublic.post("/jwt", loggedUser, { withCredentials: true })
+                axiosSecure.post("/jwt", loggedUser)
                 .then(res=>{
                     console.log("token response", res.data);
                 })
+                setLoading(false);
             }
             else{
-                axiosPublic.post("/logout", loggedUser , { withCredentials: true })
+                axiosSecure.post("/logout", loggedUser)
                 .then(res=>{
                     console.log("clear token", res.data);
                 })
+                setLoading(false);
             }
 
         });
@@ -60,7 +61,7 @@ const AuthProvider = ({ children }) => {
     }
 
     // sign out existing user
-    const logout = (email, password) => {
+    const logout = () => {
         setLoading(true);
         return signOut(auth)
     }

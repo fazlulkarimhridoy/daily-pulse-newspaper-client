@@ -1,17 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../../hooks/useAxiosPublic";
 import SingleArticle from "../AllArticles/SingleArticle/SingleArticle";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const PremiumArticles = () => {
     // hooks and states
-    const axiosPublic = useAxiosPublic();
-    const premiumArticle = true;
+    const axiosSecure = useAxiosSecure();
 
     // tanstackquery
-    const { data, isLoading } = useQuery({
+    const { data: premiumArticles = [], isLoading } = useQuery({
         queryKey: ["premiumArticles"],
         queryFn: async () => {
-            const res = await axiosPublic.get("/premiumArticles")
+            const res = await axiosSecure.get("/premiumArticles")
             return res.data;
         }
     })
@@ -19,8 +18,8 @@ const PremiumArticles = () => {
 
     // checking loading state of articles
     if (isLoading) {
-        return <div className="flex justify-center mt-28 mb-28 lg:mt-80 lg:mb-60">
-            <progress className="progress w-56"></progress>
+        return <div className="flex bg-white justify-center mt-28 mb-28 lg:mt-80 lg:mb-60">
+            <progress className="progress w-56  h-2 lg:h-8 lg:w-80"></progress>
         </div>
     }
 
@@ -28,13 +27,12 @@ const PremiumArticles = () => {
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 pt-10 pb-10">
             {
-                data?.map(data=> 
-                <SingleArticle
-                    key={data._id}
-                    data={data}
-                    premiumArticle={premiumArticle}
-                >
-                </SingleArticle>)
+                premiumArticles?.map(data =>
+                    <SingleArticle
+                        key={data._id}
+                        data={data}
+                    >
+                    </SingleArticle>)
             }
         </div>
     );

@@ -1,7 +1,7 @@
-import { FaEye, FaRegTrashAlt, FaTimes } from "react-icons/fa";
+import { FaEye, FaRegTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-const ArticleRow = ({ data, handleUpdate, handleDelete, update }) => {
+const ArticleRow = ({ data, index, handleUpdate, handleDelete, update }) => {
     // hooks & states
     const { _id, title, image, tag, publisher, isPremium, status } = data;
 
@@ -9,10 +9,13 @@ const ArticleRow = ({ data, handleUpdate, handleDelete, update }) => {
     return (
         <tr>
             <th>
+                {index + 1}
+            </th>
+            <td>
                 <button onClick={() => handleDelete(_id)} className="btn btn-circle btn-outline btn-sm">
                     <FaRegTrashAlt></FaRegTrashAlt>
                 </button>
-            </th>
+            </td>
             <td>
                 <div className="flex items-center gap-3">
                     <div className="avatar">
@@ -32,12 +35,12 @@ const ArticleRow = ({ data, handleUpdate, handleDelete, update }) => {
             <td>
                 {
                     isPremium ?
-                        <div className="text-green-600 font-bold hidden lg:flex">Premium News</div>
-                        : <div className="text-blue-600 font-bold hidden lg:flex">Regular News</div>
+                        <div className="text-green-600 font-bold hidden lg:flex">Yes</div>
+                        : <div className="text-blue-600 font-bold hidden lg:flex">No</div>
 
                 }
             </td>
-            <th>
+            <td>
                 <div className="dropdown dropdown-first">
                     <label tabIndex={0}>
                         {
@@ -59,14 +62,14 @@ const ArticleRow = ({ data, handleUpdate, handleDelete, update }) => {
                     }
 
                 </div>
-            </th>
-            <th>
+            </td>
+            <td>
                 <Link to={`/articleDetails/${_id}`}>
                     <button className="btn btn-circle btn-outline btn-sm">
                         <FaEye></FaEye>
                     </button>
                 </Link>
-            </th>
+            </td>
         </tr>
     );
 };

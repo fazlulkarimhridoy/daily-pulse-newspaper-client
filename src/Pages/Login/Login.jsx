@@ -3,12 +3,14 @@ import { FaGoogle } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 
 const Login = () => {
     // states & hooks
     const { handleSubmit, register, formState: { errors } } = useForm();
     const { googleRegister, login } = useAuth();
+    const axiosPublic = useAxiosPublic();
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -16,8 +18,18 @@ const Login = () => {
     const googleSignIn = () => {
         googleRegister()
             .then(result => {
+                // getting user info
                 const user = result.user;
                 console.log("google user", user);
+                const email = user?.email;
+                const name = user?.displayName;
+                const image = user?.photoURL;
+                const userInfo = { name, email, image }
+                // posting info in database
+                axiosPublic.post("/users", userInfo)
+                    .then(res => {
+                        console.log("user in database", res.data);
+                    })
                 if (user.uid) {
                     Swal.fire({
                         title: "Logged in",

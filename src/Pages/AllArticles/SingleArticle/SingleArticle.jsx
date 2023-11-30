@@ -1,9 +1,12 @@
 import { FaEye } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-const SingleArticle = ({ data, premiumArticle }) => {
+const SingleArticle = ({ data }) => {
     // states and hooks
     const { _id, title, image, tag, description, publisher, publisherImage, views, isPremium, subscriptionPeriod } = data;
+
+    // Determine whether the button should be disabled
+    const isButtonDisabled = isPremium && subscriptionPeriod < 1;
 
 
     return (
@@ -64,14 +67,18 @@ const SingleArticle = ({ data, premiumArticle }) => {
             {/* button area */}
             <div className="p-6">
                 <Link to={`/articleDetails/${_id}`}>
+
                     <button
+                        disabled={isButtonDisabled}
                         className={`group w-full rounded-md relative inline-block overflow-hidden border ${isPremium ? "border-orange-600" : "border-green-600"}  px-8 py-3 focus:outline-none focus:ring`}>
                         <span className={`absolute inset-x-0 bottom-0 h-[2px] ${isPremium ? "bg-orange-600" : "bg-green-600"} transition-all group-hover:h-full group-green:bg-indigo-500`}></span>
-                        <span className={`relative text-sm font-medium ${isPremium? "text-orange-600" : "text-green-600"} transition-colors group-hover:text-white`}>
+                        <span className={`relative text-sm font-medium ${isPremium ? "text-orange-600" : "text-green-600"} transition-colors group-hover:text-white`}>
                             Read More
                         </span>
                     </button>
+
                 </Link>
+
             </div>
         </div>
     );

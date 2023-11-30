@@ -1,26 +1,37 @@
+import ArticleRow from "./ArticleRow";
 import { useQuery } from "@tanstack/react-query";
-import ArticlesTable from "./ArticlesTable";
-import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
-const MyArticles = () => {
-    const { user } = useAuth();
+const PendingArticles = () => {
+    // states & hooks
     const axiosSecure = useAxiosSecure();
-    const email = user?.email;
-
-
-    // tanstackquery
-    const { data: myArticles = [], isLoading, refetch } = useQuery({
-        queryKey: ["myArticles"],
+    const { data: pendingArticles = [], isLoading, refetch } = useQuery({
+        queryKey: ["pendingArticles"],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/articleByAuthor/${email}`)
+            const res = await axiosSecure.get("/articles")
             return res.data;
         }
     })
 
+    // handle pending, approve, cancel status
+    const handleUpdate = (id, update) => {
+        const status = update;
+        axiosSecure.put(`/articles/${id}`, { status })
+            .then(res => {
+                const data = res.data
+                console.log(data);
+                Swal.fire({
+                    position: "top-end",
+                    icon: `${status === "approved" ? "success" : "error"}`,
+                    title: `The article is ${status} by the admin`,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                refetch();
+            })
 
-
+    }
 
     // handle delete
     const handleDelete = (id) => {
@@ -64,16 +75,15 @@ const MyArticles = () => {
                     })
             }
         });
-
     }
 
-
-    // checking loading state of articles
+    // checking if loading
     if (isLoading) {
-        return <div className="flex bg-white justify-center mt-28 mb-28 lg:mt-80 lg:mb-60">
+        return <div className="flex justify-center mt-28 mb-28 lg:mt-80 lg:mb-60">
             <progress className="progress w-56  h-2 lg:h-8 lg:w-80"></progress>
         </div>
     }
+
 
     return (
         <div className="overflow-x-auto bg-green-50">
@@ -85,22 +95,22 @@ const MyArticles = () => {
                         <th>Delete</th>
                         <th>Title & image</th>
                         <th>Publisher name</th>
-                        <th>Premium article</th>
+                        <th>Premium</th>
                         <th>Status</th>
-                        <th>Update</th>
                         <th>View details</th>
                     </tr>
                 </thead>
                 <tbody>
                     {/* rows */}
                     {
-                        myArticles?.map((data, index) => <ArticlesTable
+                        pendingArticles?.map((data, index) => <ArticleRow
                             key={data._id}
                             data={data}
                             index={index}
+                            handleUpdate={handleUpdate}
                             handleDelete={handleDelete}
                         >
-                        </ArticlesTable>)
+                        </ArticleRow>)
                     }
                 </tbody>
 
@@ -109,4 +119,4 @@ const MyArticles = () => {
     );
 };
 
-export default MyArticles;
+export default PendingArticles;

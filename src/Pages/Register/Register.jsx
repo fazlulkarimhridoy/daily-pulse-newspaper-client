@@ -10,7 +10,7 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_ke
 
 const Register = () => {
     const { googleRegister, createUser } = useAuth();
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const axiosPublic = useAxiosPublic();
     const location = useLocation();
     const navigate = useNavigate();
@@ -77,6 +77,12 @@ const Register = () => {
                         text: "Successfully signed up with email & password",
                         icon: "success"
                     });
+                    reset({
+                        name: "",
+                        email: "",
+                        password: ""
+                    })
+                    navigate(location?.state? location.state : "/")
                 }
             })
             .catch(err => {
@@ -89,7 +95,7 @@ const Register = () => {
         <div className="w-full mt-10 bg-gray-100 mx-auto max-w-lg p-4 border sm:p-8 text-gray-800">
             <h2 className="mb-3 text-3xl font-semibold text-center">Register a new account</h2>
             <p className="text-sm text-center text-gray-600">Already have an account?
-                <Link to="/register" className="focus:underline hover:underline">Sign in here</Link>
+                <Link to="/login" className="focus:underline hover:underline">Sign in here</Link>
             </p>
             <div className="my-6 space-y-4">
                 <button onClick={googleSignIn} aria-label="Login with Google" type="button" className="flex items-center hover:bg-green-700 hover:text-white justify-center w-full p-4 space-x-4 border rounded-md focus:ri focus:ri border-gray-600 focus:ri">

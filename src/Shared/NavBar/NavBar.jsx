@@ -3,6 +3,7 @@ import "./Navbar.css"
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { FaSignInAlt, FaSignOutAlt } from "react-icons/fa";
+import useAdmin from "../../hooks/useAdmin";
 // import { useQuery } from "@tanstack/react-query";
 // import useAxiosPublic from "../../hooks/useAxiosPublic";
 
@@ -10,6 +11,7 @@ const NavBar = () => {
     // states and hooks
     // const axiosPublic = useAxiosPublic();
     const { user, logout } = useContext(AuthContext);
+    const [isAdmin, isAdminLoading] = useAdmin();
 
     const userEmail = user?.email;
     const userImage = user?.photoURL;
@@ -39,27 +41,38 @@ const NavBar = () => {
                 console.log(user);
             })
     }
-
+    // if(isAdminLoading){
+    //     return <p>admin loading</p>
+    // }
 
     // common links
-    const links = <>
-        <li><NavLink to="/">Home</NavLink></li>
-        <li><NavLink to="/allArticles">All Articles</NavLink></li>
-        {
-            user && <>
-                <li><NavLink to="/addArticles">Add Articles</NavLink></li>
-                <li><NavLink to="/pendingArticles">Pending Articles</NavLink></li>
-                <li><NavLink to="/myArticles">My Articles</NavLink></li>
-                <li><NavLink to="/premiumArticles">Premium Articles</NavLink></li>
-                <li><NavLink to="/subscription">Subscription</NavLink></li>
-                <li><NavLink to="/dashboard">Dashboard</NavLink></li>
-            </>
-        }
-    </>
+    const links =
+        <>
+            <li><NavLink to="/">Home</NavLink></li>
+            <li><NavLink to="/allArticles">Articles</NavLink></li>
+            {
+                user && <>
+                    <li><NavLink to="/addArticles">Add Articles</NavLink></li>
+                    <li><NavLink to="/myArticles">My Articles</NavLink></li>
+                    <li><NavLink to="/premiumArticles">Premium Articles</NavLink></li>
+                    <li><NavLink to="/subscription">Subscription</NavLink></li>
+
+
+
+                </>
+            }
+            {
+                user && isAdmin &&
+                <>
+                    <li><NavLink to="/dashboard/adminHome">Dashboard</NavLink></li>
+                </>
+            }
+
+        </>
 
 
     return (
-        <div className="fixed z-10 container navbar px-4 py-6 bg-emerald-600">
+        <div className=" container navbar px-4 py-6 bg-emerald-600">
             <div className="navbar-start">
                 {/* drop down menu in image for small devices */}
                 <div className="dropdown">
