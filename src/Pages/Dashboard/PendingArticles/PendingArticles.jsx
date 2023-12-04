@@ -20,15 +20,18 @@ const PendingArticles = () => {
         axiosSecure.put(`/articles/${id}`, { status })
             .then(res => {
                 const data = res.data
-                console.log(data);
-                Swal.fire({
-                    position: "top-end",
-                    icon: `${status === "approved" ? "success" : "error"}`,
-                    title: `The article is ${status} by the admin`,
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-                refetch();
+                console.log("status", data);
+                if (data.modifiedCount > 0 && status === "approved") {
+                    Swal.fire({
+                        position: "top-end",
+                        // icon: `${status === "approved" ? "success" : "error"}`,
+                        icon: "success",
+                        title: `The article is approved by the admin`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    refetch();
+                }
             })
 
     }
@@ -49,28 +52,31 @@ const PendingArticles = () => {
                     .then(res => {
                         const data = res.data;
                         console.log(data);
-                        let timerInterval;
-                        Swal.fire({
-                            title: "Deletion in process...!",
-                            html: "Article will be deleted <b></b> milliseconds.",
-                            timer: 1000,
-                            timerProgressBar: true,
-                            didOpen: () => {
-                                Swal.showLoading();
-                                const timer = Swal.getPopup().querySelector("b");
-                                timerInterval = setInterval(() => {
-                                    timer.textContent = `${Swal.getTimerLeft()}`;
-                                }, 100);
-                            },
-                            willClose: () => {
-                                clearInterval(timerInterval);
-                            }
-                        }).then((result) => {
-                            /* Read more about handling dismissals below */
-                            if (result.dismiss === Swal.DismissReason.timer) {
-                                refetch();
-                            }
-                        });
+                        if (data.deletedCount > 0) {
+                            let timerInterval;
+                            Swal.fire({
+                                title: "Deletion in process...!",
+                                html: "Article will be deleted <b></b> milliseconds.",
+                                timer: 1000,
+                                timerProgressBar: true,
+                                didOpen: () => {
+                                    Swal.showLoading();
+                                    const timer = Swal.getPopup().querySelector("b");
+                                    timerInterval = setInterval(() => {
+                                        timer.textContent = `${Swal.getTimerLeft()}`;
+                                    }, 100);
+                                },
+                                willClose: () => {
+                                    clearInterval(timerInterval);
+                                }
+                            }).then((result) => {
+                                /* Read more about handling dismissals below */
+                                if (result.dismiss === Swal.DismissReason.timer) {
+                                }
+                            });
+                            refetch();
+                        }
+
 
                     })
             }
@@ -86,36 +92,42 @@ const PendingArticles = () => {
 
 
     return (
-        <div className="overflow-x-auto bg-green-50">
-            <table className="table">
-                {/* head */}
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Delete</th>
-                        <th>Title & image</th>
-                        <th>Publisher name</th>
-                        <th>Premium</th>
-                        <th>Status</th>
-                        <th>View details</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {/* rows */}
-                    {
-                        pendingArticles?.map((data, index) => <ArticleRow
-                            key={data._id}
-                            data={data}
-                            index={index}
-                            handleUpdate={handleUpdate}
-                            handleDelete={handleDelete}
-                        >
-                        </ArticleRow>)
-                    }
-                </tbody>
+        <>
+            <div>
+                <h3 className="text-center pt-4 text-gray-400 text-4xl font-semibold">Manage Articles</h3>
+            </div>
+            <div className="overflow-x-auto bg-green-50 pt-4">
+                <table className="table">
+                    {/* head */}
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Title & image</th>
+                            <th>Publisher name</th>
+                            <th>Premium</th>
+                            <th>Status</th>
+                            <th>View</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {/* rows */}
+                        {
+                            pendingArticles?.map((data, index) => <ArticleRow
+                                key={data._id}
+                                data={data}
+                                index={index}
+                                handleUpdate={handleUpdate}
+                                handleDelete={handleDelete}
+                                refetch={refetch}
+                            >
+                            </ArticleRow>)
+                        }
+                    </tbody>
 
-            </table>
-        </div>
+                </table>
+            </div>
+        </>
     );
 };
 

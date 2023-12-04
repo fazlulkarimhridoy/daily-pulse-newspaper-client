@@ -10,7 +10,7 @@ const AdminRoute = ({ children }) => {
 
     // if both loading then show progress bar
     if (loading || isAdminLoading) {
-        return <div className="flex bg-white justify-center mt-28 mb-28 lg:mt-80 lg:mb-60">
+        return <div className="flex justify-center mt-28 mb-28 lg:mt-80 lg:mb-60">
             <progress className="progress w-56  h-2 lg:h-8 lg:w-80"></progress>
         </div>
     }

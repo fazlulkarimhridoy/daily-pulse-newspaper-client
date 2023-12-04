@@ -92,7 +92,7 @@ const Register = () => {
 
 
     return (
-        <div className="w-full mt-10 bg-gray-100 mx-auto max-w-lg p-4 border sm:p-8 text-gray-800">
+        <div className="w-full mt-16 mb-16 bg-gray-100 mx-auto max-w-lg p-4 border sm:p-8 text-gray-800">
             <h2 className="mb-3 text-3xl font-semibold text-center">Register a new account</h2>
             <p className="text-sm text-center text-gray-600">Already have an account?
                 <Link to="/login" className="focus:underline hover:underline">Sign in here</Link>

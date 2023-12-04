@@ -1,37 +1,32 @@
 import { Link, NavLink } from "react-router-dom";
 import "./Navbar.css"
-import { useContext } from "react";
-import { AuthContext } from "../../Providers/AuthProvider";
 import { FaSignInAlt, FaSignOutAlt } from "react-icons/fa";
 import useAdmin from "../../hooks/useAdmin";
-// import { useQuery } from "@tanstack/react-query";
-// import useAxiosPublic from "../../hooks/useAxiosPublic";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
+import useAuth from "../../hooks/useAuth";
+
 
 const NavBar = () => {
     // states and hooks
-    // const axiosPublic = useAxiosPublic();
-    const { user, logout } = useContext(AuthContext);
+    const axiosSecure = useAxiosSecure();
+    const { user, logout, loading } = useAuth();
     const [isAdmin, isAdminLoading] = useAdmin();
 
+    // email from firebase
     const userEmail = user?.email;
-    const userImage = user?.photoURL;
-    const userName = user?.displayName;
 
-    // // tanstack query for user information
-    // const { data, isLoading } = useQuery({
-    //     queryKey: ["user"],
-    //     queryFn: async () => {
-    //         const res = await axiosPublic.get(`/user/${firebaseEmail}`)
-    //         return res.data;
-    //     }
-    // })
-
-    // if (isLoading) {
-    //     return <div className="flex justify-center mt-28 mb-28 lg:mt-80 lg:mb-60">
-    //         <progress className="progress w-56"></progress>
-    //     </div>
-    // }
-
+    // getting user form database
+    const { data: userDB = {}, isLoading } = useQuery({
+        queryKey: ["loggedUser"],
+        enabled: !loading,
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/user/${userEmail}`)
+            return res.data;
+        }
+    })
+    // destructuring user information
+    const { name, email, image, premiumUser } = userDB;
 
     // logout
     const handleLogout = () => {
@@ -41,9 +36,13 @@ const NavBar = () => {
                 console.log(user);
             })
     }
-    // if(isAdminLoading){
-    //     return <p>admin loading</p>
-    // }
+
+    // if loading true
+    if (isLoading || isAdminLoading || loading) {
+        return <div className="flex justify-center">
+            <progress className="progress w-56"></progress>
+        </div>
+    }
 
     // common links
     const links =
@@ -54,13 +53,10 @@ const NavBar = () => {
                 user && <>
                     <li><NavLink to="/addArticles">Add Articles</NavLink></li>
                     <li><NavLink to="/myArticles">My Articles</NavLink></li>
-                    <li><NavLink to="/premiumArticles">Premium Articles</NavLink></li>
-                    <li><NavLink to="/subscription">Subscription</NavLink></li>
-
-
-
+                    {/* <li><NavLink to="/premiumArticles">Premium Articles</NavLink></li> */}
                 </>
             }
+            <li><NavLink to="/subscriptions">Subscription</NavLink></li>
             {
                 user && isAdmin &&
                 <>
@@ -72,7 +68,7 @@ const NavBar = () => {
 
 
     return (
-        <div className=" container navbar px-4 py-6 bg-emerald-600">
+        <div className="container navbar px-4 py-6 bg-emerald-600">
             <div className="navbar-start">
                 {/* drop down menu in image for small devices */}
                 <div className="dropdown">
@@ -100,21 +96,30 @@ const NavBar = () => {
             <div className="navbar-end">
                 {
                     user ?
-                        <div className="dropdown dropdown-bottom dropdown-end">
+                        <div className="dropdown dropdown-bottom dropdown-end z-10">
                             <label tabIndex={0} className="m-1">
-                                <button>
-                                    <img className="w-[50px] h-[50px] mr-2 rounded-full border-2"
-                                        src={userImage}
-                                        alt="user_photo" />
-                                </button>
+                                <div className="flex gap-1">
+                                    {
+                                        premiumUser === "true" &&
+                                        <p className="text-gray-300 font-medium">
+                                            Premium
+                                        </p>
+                                    }
+                                    <button>
+
+                                        <img className="w-[50px] h-[50px] mr-2 rounded-full border-2"
+                                            src={image}
+                                            alt="user_photo" />
+                                    </button>
+                                </div>
                             </label>
                             <ul tabIndex={0} className="dropdown-content z-[1] p-4 shadow bg-green-50 rounded-box w-60">
 
 
                                 {/* <li className="p-3 text-center font-medium rounded-lg mb-3 bg-gray-300">{fullName}</li> */}
-                                <li className="p-3 text-center font-medium rounded-lg mb-3 bg-gray-300">{userName || "No Name"}</li>
-                                <li className="p-3 text-center font-medium rounded-lg mb-3 bg-gray-300">{userEmail}</li>
-                                <li><Link className="btn w-full mb-3 border bg-gray-300">Visit Profile</Link></li>
+                                <li className="p-3 text-center font-medium rounded-lg mb-3 bg-gray-300">{name || "No Name"}</li>
+                                {/* <li className="p-3 text-center font-medium rounded-lg mb-3 bg-gray-300">{email}</li> */}
+                                <li><Link to="/profile" className="btn w-full mb-3 border bg-gray-300">Visit Profile</Link></li>
                                 <li><button onClick={handleLogout} className="btn w-full bg-orange-700 text-white hover:bg-yellow-500">
                                     <FaSignOutAlt></FaSignOutAlt>
                                     Logout

@@ -82,6 +82,8 @@ const AddArticles = () => {
                         tag: "",
                         description: "",
                         publisher: "",
+                        image: "",
+                        publisherImage: ""
                     })
                 }
             })
@@ -97,7 +99,7 @@ const AddArticles = () => {
                         {/* Details area */}
                         <div className="lg:col-span-2 lg:py-12">
                             <p className="max-w-xl text-lg">
-                                You can add your publications here and after being confirmed from admin you will be able to see them in all articles page.
+                                You can add your articles here and after being confirmed from admin you will be able to see them in all articles page.
                             </p>
 
                             <div className="mt-8">

@@ -1,11 +1,22 @@
 import CountUp from 'react-countup';
+import useUsers from '../../../hooks/useUsers';
 
 const Statistics = () => {
+    // hooks and states
+    const [allUsers, premiumUsers, regularUsers, isAllUsersLoading, isPremiumUsersLoading, isRegularUsersLoading] = useUsers();
+
+    // if loading true
+    if (isAllUsersLoading || isPremiumUsersLoading || isRegularUsersLoading) {
+        return <div className="flex bg-emerald-50 justify-center mt-28 mb-28 lg:mt-80 lg:mb-60">
+            <progress className="progress w-56  h-2 lg:h-8 lg:w-80"></progress>
+        </div>
+    }
+
     return (
         <section>
             <div className="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 md:py-16 lg:px-8">
                 <div className="mx-auto max-w-3xl text-center">
-                    <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">
+                    <h2 className="text-3xl font-bold text-gray-400 sm:text-4xl">
                         Users stats
                     </h2>
 
@@ -27,8 +38,9 @@ const Statistics = () => {
                             <dd className="text-4xl font-extrabold text-green-600 md:text-5xl">
                                 <CountUp
                                     start={1}
-                                    end={250}
+                                    end={allUsers.length}
                                     duration={5}
+                                    delay={2}
                                 />
                             </dd>
                         </div>
@@ -43,7 +55,8 @@ const Statistics = () => {
                             <dd className="text-4xl font-extrabold text-green-600 md:text-5xl">
                                 <CountUp
                                     start={1}
-                                    end={159}
+                                    end={regularUsers.length}
+                                    delay={2}
                                     duration={5}
                                 />
                             </dd>
@@ -59,7 +72,8 @@ const Statistics = () => {
                             <dd className="text-4xl font-extrabold text-green-600 md:text-5xl">
                                 <CountUp
                                     start={1}
-                                    end={91}
+                                    end={premiumUsers.length}
+                                    delay={2}
                                     duration={5}
                                 />
                             </dd>

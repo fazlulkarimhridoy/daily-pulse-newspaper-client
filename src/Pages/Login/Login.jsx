@@ -65,7 +65,7 @@ const Login = () => {
     }
 
     return (
-        <div className="w-full bg-gray-100 mx-auto max-w-lg border mt-10 sm:p-8 text-gray-800">
+        <div className="w-full bg-gray-100 mx-auto max-w-lg border mt-16 mb-16 sm:p-8 text-gray-800">
             <h2 className="mb-3 text-3xl font-semibold text-center">Login to your account</h2>
             <p className="text-sm text-center text-gray-600">Dont have account?
                 <Link to="/register" className="focus:underline hover:underline">Sign up here</Link>

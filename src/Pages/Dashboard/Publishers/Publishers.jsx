@@ -1,45 +1,23 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import Swal from "sweetalert2";
-import UserRow from "./UserRow";
+import PublisherRow from "./PublisherRow";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import Swal from "sweetalert2";
 
-const Users = () => {
+const Publishers = () => {
     const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxiosSecure();
-    const { data: allUsers = [], isLoading, refetch } = useQuery({
-        queryKey: ["users"],
+    const { data: allPublishers = [], isLoading, refetch } = useQuery({
+        queryKey: ["publishers"],
         queryFn: async () => {
-            const res = await axiosPublic.get("/users")
+            const res = await axiosPublic.get("/publishers")
             return res.data;
         }
     })
 
-    // handle pending, approve, cancel status
-    const handleUpdate = (id, update, name) => {
-        console.log(id, update);
-        const role = update;
-        axiosSecure.put(`/users/${id}`, { role })
-            .then(res => {
-                const data = res.data
-                console.log(data);
-                if (data.modifiedCount > 0) {
-                    Swal.fire({
-                        position: "top-end",
-                        icon: "success",
-                        title: `${name} is an admin now`,
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-                    refetch();
-                }
-            })
-
-    }
 
     // handle delete
-    const handleDelete = (id) => {
-        console.log(id);
+    const handleDelete = (id, publisher) => {
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -50,14 +28,14 @@ const Users = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axiosSecure.delete(`/users/${id}`)
+                axiosSecure.delete(`/publishers/${id}`)
                     .then(res => {
                         const data = res.data;
                         console.log(data);
                         let timerInterval;
                         Swal.fire({
                             title: "Deletion in process...!",
-                            html: "User will be deleted in <b></b> milliseconds.",
+                            html: `${publisher} will be deleted in <b></b> milliseconds.`,
                             timer: 1000,
                             timerProgressBar: true,
                             didOpen: () => {
@@ -83,6 +61,7 @@ const Users = () => {
 
 
     }
+
     // if loading true
     if (isLoading) {
         return <div className="flex justify-center mt-28 mb-28 lg:mt-80 lg:mb-60">
@@ -93,7 +72,7 @@ const Users = () => {
     return (
         <>
             <div>
-                <h3 className="text-center pt-4 text-gray-400 text-4xl font-semibold">All Users</h3>
+                <h3 className="text-center pt-4 text-gray-400 text-4xl font-semibold">All Publishers</h3>
             </div>
             <div className="overflow-x-auto bg-green-50 pt-4">
                 <table className="table">
@@ -101,24 +80,21 @@ const Users = () => {
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Name & image</th>
-                            <th>User email</th>
-                            <th>Status</th>
-                            <th>Role</th>
+                            <th>Image</th>
+                            <th>Name</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
                         {/* rows */}
                         {
-                            allUsers?.map((data, index) => <UserRow
+                            allPublishers?.map((data, index) => <PublisherRow
                                 key={data._id}
                                 data={data}
                                 index={index}
-                                handleUpdate={handleUpdate}
                                 handleDelete={handleDelete}
                             >
-                            </UserRow>)
+                            </PublisherRow>)
                         }
                     </tbody>
 
@@ -128,4 +104,4 @@ const Users = () => {
     );
 };
 
-export default Users;
+export default Publishers;

@@ -70,42 +70,51 @@ const MyArticles = () => {
 
     // checking loading state of articles
     if (isLoading) {
-        return <div className="flex bg-white justify-center mt-28 mb-28 lg:mt-80 lg:mb-60">
+        return refetch() && <div className="flex bg-emerald-50 justify-center mt-28 mb-28 lg:mt-80 lg:mb-60">
             <progress className="progress w-56  h-2 lg:h-8 lg:w-80"></progress>
         </div>
     }
 
     return (
-        <div className="overflow-x-auto bg-green-50">
-            <table className="table">
-                {/* head */}
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Delete</th>
-                        <th>Title & image</th>
-                        <th>Publisher name</th>
-                        <th>Premium article</th>
-                        <th>Status</th>
-                        <th>Update</th>
-                        <th>View details</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {/* rows */}
-                    {
-                        myArticles?.map((data, index) => <ArticlesTable
-                            key={data._id}
-                            data={data}
-                            index={index}
-                            handleDelete={handleDelete}
-                        >
-                        </ArticlesTable>)
-                    }
-                </tbody>
+        <>
+            <div>
+                <h3 className="text-center pt-4 text-gray-400 text-4xl font-semibold">All Articles By {user?.displayName}</h3>
+            </div>
+            <div className="overflow-x-auto bg-green-50 pt-4">
+                {
+                    myArticles.length > 0 ? <table className="table">
+                        {/* head */}
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>View</th>
+                                <th>Title & image</th>
+                                <th>Publisher name</th>
+                                <th>Premium article</th>
+                                <th>Status</th>
+                                <th>Update</th>
+                                <th>Delete</th>
 
-            </table>
-        </div>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {/* rows */}
+                            {
+                                myArticles?.map((data, index) => <ArticlesTable
+                                    key={data._id}
+                                    data={data}
+                                    index={index}
+                                    handleDelete={handleDelete}
+                                >
+                                </ArticlesTable>)
+                            }
+                        </tbody>
+
+                    </table> : <p className="text-center text-6xl pb-10 font-bold">No data found</p>
+                }
+
+            </div>
+        </>
     );
 };
 

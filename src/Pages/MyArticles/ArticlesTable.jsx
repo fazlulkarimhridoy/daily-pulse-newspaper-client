@@ -1,21 +1,23 @@
-import { FaEye, FaRegTimesCircle, FaRegTrashAlt, FaTimes, FaToolbox, FaTools } from "react-icons/fa";
+import { FaCheck, FaCommentAlt, FaEye, FaQuestion, FaTimes, FaTools, FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const ArticlesTable = ({ data, index, handleDelete }) => {
     // hooks and states
-    const { _id, title, image, tag, publisher, isPremium, status } = data;
+    const { _id, title, image, tag, publisher, isPremium, status, cancelationText } = data;
+
 
     return (
         <tr>
             <th>
-                {index+1}
+                {index + 1}
             </th>
             <td>
-                <button onClick={() => handleDelete(_id)} className="btn btn-circle btn-outline btn-sm">
-                    <FaRegTrashAlt></FaRegTrashAlt>
-                </button>
+                <Link to={`/articleDetails/${_id}`}>
+                    <button className="btn btn-circle btn-outline btn-sm">
+                        <FaEye></FaEye>
+                    </button>
+                </Link>
             </td>
-
             <td>
                 <div className="flex items-center gap-3">
                     <div className="avatar">
@@ -41,13 +43,40 @@ const ArticlesTable = ({ data, index, handleDelete }) => {
             </td>
             <td>
                 {
-                    status === "pending" && <p className="text-yellow-600 font-bold">{status}</p>
+                    status === "pending" && <p className="text-yellow-600 font-bold"><FaQuestion></FaQuestion></p>
                 }
                 {
-                    status === "approved" && <p className="text-green-600 font-bold">{status}</p>
+                    status === "approved" && <p className="text-green-600 font-bold"><FaCheck></FaCheck></p>
                 }
                 {
-                    status === "cancelled" && <p className="text-red-600 font-bold">{status}</p>
+                    status === "cancelled" &&
+                    <div className="flex items-center">
+                        <p className="text-red-600 font-bold mr-2">
+                            <FaTimes></FaTimes>
+                        </p>
+                        {/* Open the modal using document.getElementById('ID').showModal() method */}
+                        {
+                            cancelationText && <button
+                                className="btn btn-sm rounded-full"
+                                onClick={() => {
+                                    document.getElementById('my_modal_5').showModal()
+                                }}>
+                                <FaCommentAlt></FaCommentAlt>
+                            </button>
+                        }
+
+                        <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+                            <div className="modal-box">
+                                <p className="py-4 text-xl font-semibold">{cancelationText}</p>
+                                <div className="modal-action">
+                                    <form method="dialog">
+                                        {/* if there is a button in form, it will close the modal */}
+                                        <button className="btn text-red-600">Go back</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </dialog>
+                    </div>
                 }
             </td>
             <td>
@@ -58,12 +87,11 @@ const ArticlesTable = ({ data, index, handleDelete }) => {
                 </Link>
             </td>
             <td>
-                <Link to={`/articleDetails/${_id}`}>
-                    <button className="btn btn-circle btn-outline btn-sm">
-                        <FaEye></FaEye>
-                    </button>
-                </Link>
+                <button onClick={() => handleDelete(_id)} className="btn btn-circle btn-outline btn-sm">
+                    <FaTrash className="text-red-600"></FaTrash>
+                </button>
             </td>
+
         </tr>
     );
 };

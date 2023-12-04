@@ -18,6 +18,13 @@ import Users from "../Pages/Dashboard/Users/Users";
 import AdminDashboard from "../Pages/Dashboard/AdminDashboard/AdminDashboard";
 import PendingArticles from "../Pages/Dashboard/PendingArticles/PendingArticles"
 import AdminRoute from "../Routes/AdminRoute/AdminRoute"
+import Publishers from "../Pages/Dashboard/Publishers/Publishers";
+import AddPublishers from "../Pages/Dashboard/AddPublishers/AddPublishers";
+import Plans from "../Pages/Home/Plans/Plans";
+import Profile from "../Components/Profile/Profile";
+import Subscription from "../Pages/Subscription/Subscription";
+
+
 
 export const router = createBrowserRouter([
   {
@@ -56,12 +63,24 @@ export const router = createBrowserRouter([
       {
         path: "/updateArticle/:id",
         element: <PrivateRoute><UpdateArticle></UpdateArticle></PrivateRoute>,
-        loader: ({ params }) => fetch(`https://newspaper-server-phi.vercel.app/article/${params.id}`)
+        loader: ({ params }) => fetch(`http://localhost:5000/article/${params.id}`)
       },
       {
         path: "/articleDetails/:id",
         element: <PrivateRoute><ArticleDetails></ArticleDetails></PrivateRoute>,
-        loader: ({ params }) => fetch(`https://newspaper-server-phi.vercel.app/article/${params.id}`)
+        loader: ({ params }) => fetch(`http://localhost:5000/article/${params.id}`)
+      },
+      {
+        path: "/plans",
+        element: <Plans></Plans>
+      },
+      {
+        path: "/subscriptions",
+        element: <PrivateRoute><Subscription></Subscription></PrivateRoute>
+      },
+      {
+        path: "/profile",
+        element: <PrivateRoute><Profile></Profile></PrivateRoute>
       }
     ]
   },
@@ -82,8 +101,12 @@ export const router = createBrowserRouter([
         element: <PendingArticles></PendingArticles>
       },
       {
-        path: "subscriptions",
-        element: <div>Subscribers will be here soon</div>
+        path: "addPublishers",
+        element: <AddPublishers></AddPublishers>
+      },
+      {
+        path: "publishers",
+        element: <Publishers></Publishers>
       }
     ]
   }

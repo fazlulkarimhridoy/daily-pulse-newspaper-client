@@ -1,17 +1,12 @@
 import { FaRegTrashAlt } from "react-icons/fa";
 
 const UserRow = ({ data, index, handleUpdate, handleDelete, update }) => {
-    const { _id, name, image, email, role } = data;
+    const { _id, name, image, email, role, premiumUser } = data;
     return (
         <tr>
             <th>
                 {index + 1}
             </th>
-            <td>
-                <button onClick={() => handleDelete(_id)} className="btn btn-circle btn-outline btn-sm">
-                    <FaRegTrashAlt></FaRegTrashAlt>
-                </button>
-            </td>
             <td>
                 <div className="flex items-center gap-3">
                     <div className="avatar">
@@ -27,7 +22,13 @@ const UserRow = ({ data, index, handleUpdate, handleDelete, update }) => {
             <td>
                 <div className="text-gray-600 font-bold">{email}</div>
             </td>
-
+            <td>
+                {
+                    premiumUser === "true" ?
+                        <p className="text-pink-600 font-bold">Premium</p> :
+                        <p className="text-blue-600 font-bold">Regular</p>
+                }
+            </td>
             <td>
                 {
                     role === "admin" ?
@@ -35,6 +36,11 @@ const UserRow = ({ data, index, handleUpdate, handleDelete, update }) => {
                         :
                         <button onClick={() => handleUpdate(_id, update = "admin", name)} className="text-yellow-600 font-bold">make admin</button>
                 }
+            </td>
+            <td>
+                <button onClick={() => handleDelete(_id)} className="btn btn-circle btn-outline btn-sm">
+                    <FaRegTrashAlt></FaRegTrashAlt>
+                </button>
             </td>
 
         </tr>
