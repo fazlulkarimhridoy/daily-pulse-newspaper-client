@@ -72,18 +72,18 @@ const SubscriptionBanner = () => {
 
 
     // checking loading state
-    if (isLoading) {
-        return <div className="flex bg-emerald-50 justify-center mt-28 mb-28 lg:mt-40 lg:mb-40">
-            <progress className="progress w-56  h-2 lg:h-8 lg:w-80"></progress>
-        </div>
-    }
+    // if (isLoading) {
+    //     return <div className="flex bg-emerald-50 justify-center mt-28 mb-28 lg:mt-40 lg:mb-40">
+    //         <progress className="progress w-56  h-2 lg:h-8 lg:w-80"></progress>
+    //     </div>
+    // }
 
 
 
     return (
         <div>
             {
-                !premiumUser ? showSubscription && <div className="fixed z-10 overflow-hidden inset-x-0 container top-80 left-[650px] p-4">
+                !premiumUser && showSubscription && <div className="fixed z-10 overflow-hidden inset-x-0 container top-80 left-[650px] p-4">
                     <div className="relative max-w-xl rounded-lg bg-gray-100 p-6 shadow-sm">
                         <button
                             type="button"
@@ -133,7 +133,7 @@ const SubscriptionBanner = () => {
                             </div>
                         </div>
                     </div>
-                </div> : null
+                </div> 
             }
         </div>
     );

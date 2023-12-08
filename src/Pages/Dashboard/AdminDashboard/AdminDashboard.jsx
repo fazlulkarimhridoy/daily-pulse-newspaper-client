@@ -8,7 +8,7 @@ export const columnData = [
     ["Silver", 10.49, "silver"], // English color name
     ["Gold", 19.3, "gold"],
     ["Platinum", 21.45, "color: #e5e4e2"], // CSS-style declaration
-  ];
+];
 
 // data for piece chart
 export const data = [
@@ -43,19 +43,19 @@ const AdminDashboard = () => {
             <div className="flex">
                 <div className=" w-3/4 mx-auto stats stats-vertical lg:stats-horizontal">
                     {/* all users stats */}
-                    <div className="stat">
+                    <div className="stat bg-green-100">
                         <div className="stat-title">All Users</div>
                         <div className="stat-value">{allUsers.length}</div>
                         <div className="stat-desc">Jan 1st - Feb 1st</div>
                     </div>
                     {/* premium users stats */}
-                    <div className="stat">
+                    <div className="stat bg-amber-100">
                         <div className="stat-title">Premium Users</div>
                         <div className="stat-value">{premiumUsers.length}</div>
                         <div className="stat-desc">↗︎ 400 (22%)</div>
                     </div>
                     {/* regular users stats */}
-                    <div className="stat">
+                    <div className="stat bg-slate-100">
                         <div className="stat-title">Regular Users</div>
                         <div className="stat-value">{regularUsers.length}</div>
                         <div className="stat-desc">↘︎ 90 (14%)</div>

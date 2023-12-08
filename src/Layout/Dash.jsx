@@ -33,7 +33,7 @@ const Dash = () => {
         <div className="container mx-auto">
             <div className="flex">
                 {/* dashboard sidebar */}
-                <div className="min-h-screen p-3 space-y-2 w-60 bg-emerald-200 text-gray-800">
+                <div className="min-h-screen p-3 space-y-2 w-60 bg-green-200 text-gray-800">
                     <div className="flex items-center p-2 space-x-4">
                         <img src={image} alt="user_photo" className="w-12 h-12 rounded-full bg-gray-500" />
                         <div>

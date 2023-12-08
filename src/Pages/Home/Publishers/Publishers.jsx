@@ -10,11 +10,11 @@ const Publishers = () => {
             return res.data;
         }
     })
-    if (isLoading) {
-        return <div className="flex bg-emerald-50 justify-center mt-28 mb-28 lg:mt-80 lg:mb-60">
-            <progress className="progress w-56  h-2 lg:h-8 lg:w-80"></progress>
-        </div>
-    }
+    // if (isLoading) {
+    //     return <div className="flex bg-emerald-50 justify-center mt-28 mb-28 lg:mt-80 lg:mb-60">
+    //         <progress className="progress w-56  h-2 lg:h-8 lg:w-80"></progress>
+    //     </div>
+    // }
     return (
         <section className="py-6 text-gray-800">
             <div className="container p-4 mx-auto space-y-16 sm:p-10">

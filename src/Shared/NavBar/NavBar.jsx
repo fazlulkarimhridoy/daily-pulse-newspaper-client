@@ -38,11 +38,11 @@ const NavBar = () => {
     }
 
     // if loading true
-    if (isLoading || isAdminLoading || loading) {
-        return <div className="flex justify-center">
-            <progress className="progress w-56"></progress>
-        </div>
-    }
+    // if (isLoading || isAdminLoading || loading) {
+    //     return <div className="flex justify-center">
+    //         <progress className="progress w-56"></progress>
+    //     </div>
+    // }
 
     // common links
     const links =
@@ -101,7 +101,7 @@ const NavBar = () => {
                                 <div className="flex gap-1">
                                     {
                                         premiumUser === "true" &&
-                                        <p className="text-gray-300 font-medium">
+                                        <p className="text-amber-500 font-medium">
                                             Premium
                                         </p>
                                     }
@@ -117,9 +117,9 @@ const NavBar = () => {
 
 
                                 {/* <li className="p-3 text-center font-medium rounded-lg mb-3 bg-gray-300">{fullName}</li> */}
-                                <li className="p-3 text-center font-medium rounded-lg mb-3 bg-gray-300">{name || "No Name"}</li>
+                                <li className="p-3 text-white text-center font-medium rounded-lg mb-3 bg-amber-600">{name || "No Name"}</li>
                                 {/* <li className="p-3 text-center font-medium rounded-lg mb-3 bg-gray-300">{email}</li> */}
-                                <li><Link to="/profile" className="btn w-full mb-3 border bg-gray-300">Visit Profile</Link></li>
+                                <li><Link to="/profile" className="btn w-full mb-3 border text-white bg-lime-600">Visit Profile</Link></li>
                                 <li><button onClick={handleLogout} className="btn w-full bg-orange-700 text-white hover:bg-yellow-500">
                                     <FaSignOutAlt></FaSignOutAlt>
                                     Logout

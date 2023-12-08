@@ -23,7 +23,8 @@ const Plans = () => {
 
 
     // handle subscription
-    const handleSubscription = (days) => {
+    const handleSubscription = (days, price) => {
+        console.log(price);
         if (premiumUser === "true") {
             return Swal.fire({
                 title: "Already a premium user",
@@ -58,11 +59,11 @@ const Plans = () => {
 
     }
     // checking loading state
-    if (isLoading) {
-        return <div className="flex bg-emerald-50 justify-center mt-28 mb-28 lg:mt-40 lg:mb-40">
-            <progress className="progress w-56  h-2 lg:h-8 lg:w-80"></progress>
-        </div>
-    }
+    // if (isLoading) {
+    //     return <div className="flex bg-emerald-50 justify-center mt-28 mb-28 lg:mt-40 lg:mb-40">
+    //         <progress className="progress w-56  h-2 lg:h-8 lg:w-80"></progress>
+    //     </div>
+    // }
     return (
         <>
             <div className="max-w-screen-xl mx-auto px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
@@ -75,7 +76,7 @@ const Plans = () => {
                 </div>
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:items-stretch md:grid-cols-3 md:gap-8">
                     {/* first plan */}
-                    <div className="divide-y divide-gray-200 rounded-2xl border-2 hover:shadow-md  hover:duration-500">
+                    <div className="bg-slate-100 divide-y divide-gray-200 rounded-2xl hover:shadow-md  hover:duration-500">
                         <div className="p-6 sm:px-8">
                             <h2 className="text-lg font-medium text-gray-900">
                                 Starter
@@ -95,7 +96,7 @@ const Plans = () => {
                             </p>
 
                             <button
-                                onClick={() => handleSubscription(10)}
+                                onClick={() => handleSubscription(10, 0)}
                                 disabled={isButtonDisabled}
                                 className="mt-4 w-full block rounded border border-green-600 bg-green-600 px-12 py-3 text-center text-sm font-medium text-white hover:bg-transparent hover:text-green-600 focus:outline-none focus:ring active:text-green-500 sm:mt-6">
                                 Get Started
@@ -227,7 +228,7 @@ const Plans = () => {
                     </div>
 
                     {/* second plan */}
-                    <div className="divide-y divide-gray-200 rounded-2xl border-2 hover:shadow-md  hover:duration-500">
+                    <div className="bg-lime-100 divide-y divide-gray-200 rounded-2xl hover:shadow-md  hover:duration-500">
                         <div className="p-6 sm:px-8">
                             <h2 className="text-lg font-medium text-gray-900">
                                 Pro
@@ -247,7 +248,7 @@ const Plans = () => {
                             </p>
 
                             <button
-                                onClick={() => handleSubscription(30)}
+                                onClick={() => handleSubscription(30, 30)}
                                 disabled={isButtonDisabled}
                                 className="w-full mt-4 block rounded border border-green-600 bg-green-600 px-12 py-3 text-center text-sm font-medium text-white hover:bg-transparent hover:text-green-600 focus:outline-none focus:ring active:text-green-500 sm:mt-6">
                                 Get Started
@@ -378,7 +379,7 @@ const Plans = () => {
                     </div>
 
                     {/* third plan */}
-                    <div className="divide-y divide-gray-200 rounded-2xl border-2 hover:shadow-md  hover:duration-500">
+                    <div className="bg-green-200 divide-y divide-gray-200 rounded-2xl hover:shadow-md  hover:duration-500">
                         <div className="p-6 sm:px-8">
                             <h2 className="text-lg font-medium text-gray-900">
                                 Enterprise
@@ -398,7 +399,7 @@ const Plans = () => {
                             </p>
 
                             <button
-                                onClick={() => handleSubscription(90)}
+                                onClick={() => handleSubscription(90, 100)}
                                 disabled={isButtonDisabled}
                                 className="w-full mt-4 block rounded border border-green-600 bg-green-600 px-12 py-3 text-center text-sm font-medium text-white hover:bg-transparent hover:text-green-600 focus:outline-none focus:ring active:text-green-500 sm:mt-6">
                                 Get Started

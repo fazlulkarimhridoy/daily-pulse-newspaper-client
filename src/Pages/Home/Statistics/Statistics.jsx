@@ -6,11 +6,11 @@ const Statistics = () => {
     const [allUsers, premiumUsers, regularUsers, isAllUsersLoading, isPremiumUsersLoading, isRegularUsersLoading] = useUsers();
 
     // if loading true
-    if (isAllUsersLoading || isPremiumUsersLoading || isRegularUsersLoading) {
-        return <div className="flex bg-emerald-50 justify-center mt-28 mb-28 lg:mt-80 lg:mb-60">
-            <progress className="progress w-56  h-2 lg:h-8 lg:w-80"></progress>
-        </div>
-    }
+    // if (isAllUsersLoading || isPremiumUsersLoading || isRegularUsersLoading) {
+    //     return <div className="flex bg-emerald-50 justify-center mt-28 mb-28 lg:mt-80 lg:mb-60">
+    //         <progress className="progress w-56  h-2 lg:h-8 lg:w-80"></progress>
+    //     </div>
+    // }
 
     return (
         <section>
@@ -28,8 +28,9 @@ const Statistics = () => {
 
                 <div className="mt-8 sm:mt-12">
                     <dl className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+                        {/* regular user counts */}
                         <div
-                            className="flex flex-col rounded-lg border-2 hover:shadow-md hover:duration-500 px-4 py-8 text-center"
+                            className="flex flex-col bg-green-100 rounded-lg hover:shadow-md hover:duration-500 px-4 py-8 text-center"
                         >
                             <dt className="order-last text-lg font-medium text-gray-500">
                                 All Users
@@ -45,8 +46,27 @@ const Statistics = () => {
                             </dd>
                         </div>
 
+                        {/* premium user counts */}
                         <div
-                            className="flex flex-col rounded-lg border-2 hover:shadow-md hover:duration-500 px-4 py-8 text-center"
+                            className="flex flex-col bg-amber-100 rounded-lg hover:shadow-md  hover:duration-500 px-4 py-8 text-center"
+                        >
+                            <dt className="order-last text-lg font-medium text-gray-500">
+                                Premium Users
+                            </dt>
+
+                            <dd className="text-4xl font-extrabold text-green-600 md:text-5xl">
+                                <CountUp
+                                    start={1}
+                                    end={premiumUsers.length}
+                                    delay={2}
+                                    duration={5}
+                                />
+                            </dd>
+                        </div>
+
+                        {/* regular user counts */}
+                        <div
+                            className="flex flex-col rounded-lg bg-slate-100 hover:shadow-md hover:duration-500 px-4 py-8 text-center"
                         >
                             <dt className="order-last text-lg font-medium text-gray-500">
                                 Regular Users
@@ -62,22 +82,7 @@ const Statistics = () => {
                             </dd>
                         </div>
 
-                        <div
-                            className="flex flex-col rounded-lg border-2 hover:shadow-md  hover:duration-500 px-4 py-8 text-center"
-                        >
-                            <dt className="order-last text-lg font-medium text-gray-500">
-                                Premium Users
-                            </dt>
 
-                            <dd className="text-4xl font-extrabold text-green-600 md:text-5xl">
-                                <CountUp
-                                    start={1}
-                                    end={premiumUsers.length}
-                                    delay={2}
-                                    duration={5}
-                                />
-                            </dd>
-                        </div>
                     </dl>
                 </div>
             </div>
