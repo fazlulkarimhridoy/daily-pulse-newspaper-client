@@ -3,18 +3,15 @@ import { FacebookLogo, LinkedinLogo, GithubLogo } from "phosphor-react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
-// import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
+import { useEffect, useState } from "react";
 
-
-// const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
-// const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 
 const Profile = () => {
+    const [imageBlob, setImageBlob] = useState(null);
     const { register, handleSubmit, formState: { errors } } = useForm();
-    // const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxiosSecure();
     const { user } = useAuth();
 
@@ -30,26 +27,13 @@ const Profile = () => {
     })
     const { name, email, image } = loggedUser;
 
-    const onSubmit = async (formData) => {
-        // // hosting image in imagebb and getting url
-        // const userImageFile = { image: formData.image[0] };
 
-        // // publisher image hosting
-        // const result = await axiosPublic.post(image_hosting_api, userImageFile, {
-        //     headers: {
-        //         "Content-Type": "multipart/form-data"
-        //     }
-        // })
-
-        // // image urls
-        // const userImageBB = result.data.data.display_url;
+    const onSubmit = (formData) => {
 
         // // getting data
         const name = formData.name;
         const image = formData.image;
         const email = formData.email;
-
-
 
         // creating object to sent to database
         const doc = { name, image, email }
