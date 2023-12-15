@@ -68,12 +68,12 @@ const NavBar = () => {
 
 
     return (
-        <div className="container navbar px-4 py-6 bg-emerald-600">
+        <div className="container navbar py-0 px-4 bg-emerald-600">
             <div className="navbar-start">
                 {/* drop down menu in image for small devices */}
                 <div className="dropdown">
                     <label tabIndex={0} className="lg:hidden">
-                        <img className="w-1/3 ml-2"
+                        <img className="w-1/4 ml-2"
                             src="https://i.ibb.co/W3HJ2xy/daily-pulse-high-resolution-logo-black-transparent.png"
                             alt="newspaper_portal" />
                     </label>
@@ -84,11 +84,11 @@ const NavBar = () => {
                 {/* logo for medium and larger devices */}
                 <img src="https://i.ibb.co/W3HJ2xy/daily-pulse-high-resolution-logo-black-transparent.png"
                     alt="newspaper_portal"
-                    className="hidden lg:flex ml-2 w-[70px] h-[70px]" />
+                    className="hidden lg:flex ml-2 w-[50px] h-[50px]" />
             </div>
             {/* links for medium and larger devices */}
             <div className="navbar-center hidden lg:flex">
-                <ul id="link2" className="menu menu-horizontal px-1 gap-2 text-white">
+                <ul id="link2" className="menu menu-horizontal px-1 gap-x-2 text-sm text-white">
                     {links}
                 </ul>
             </div>
@@ -97,17 +97,17 @@ const NavBar = () => {
                 {
                     user ?
                         <div className="dropdown dropdown-bottom dropdown-end z-10">
-                            <label tabIndex={0} className="m-1">
-                                <div className="flex gap-1">
+                            <label tabIndex={0} className="">
+                                <div className="flex ">
                                     {
                                         premiumUser === "true" &&
-                                        <p className="text-amber-500 font-medium">
+                                        <p className="text-amber-500 text-sm font-medium">
                                             Premium
                                         </p>
                                     }
                                     <button>
 
-                                        <img className="w-[50px] h-[50px] mr-2 rounded-full border-2"
+                                        <img className="w-[40px] h-[40px] mr-2 rounded-full border-2"
                                             src={image}
                                             alt="user_photo" />
                                     </button>
