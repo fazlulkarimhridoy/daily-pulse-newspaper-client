@@ -62,7 +62,6 @@ const Banner = () => {
                 {
                     bannerData?.map(data =>
                         <SwiperSlide
-                            className="pb-10"
                             key={data._id}>
                             <SingleArticle
                                 isBanner={isBanner}

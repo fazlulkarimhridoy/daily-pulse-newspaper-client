@@ -63,12 +63,12 @@ export const router = createBrowserRouter([
       {
         path: "/updateArticle/:id",
         element: <PrivateRoute><UpdateArticle></UpdateArticle></PrivateRoute>,
-        loader: ({ params }) => fetch(`https://newspaper-server-phi.vercel.app/article/${params.id}`)
+        loader: ({ params }) => fetch(`http://localhost:5000/article/${params.id}`)
       },
       {
         path: "/articleDetails/:id",
         element: <PrivateRoute><ArticleDetails></ArticleDetails></PrivateRoute>,
-        loader: ({ params }) => fetch(`https://newspaper-server-phi.vercel.app/article/${params.id}`)
+        loader: ({ params }) => fetch(`http://localhost:5000/article/${params.id}`)
       },
       {
         path: "/plans",

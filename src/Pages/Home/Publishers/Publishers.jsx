@@ -16,7 +16,7 @@ const Publishers = () => {
     //     </div>
     // }
     return (
-        <section className="py-6 text-gray-800">
+        <section className="pb-6 text-gray-800">
             <div className="container p-4 mx-auto space-y-16 sm:p-10">
                 <div className="space-y-4 text-center">
                     <h3 className="text-2xl font-bold text-gray-400 sm:text-5xl">All Publishers</h3>

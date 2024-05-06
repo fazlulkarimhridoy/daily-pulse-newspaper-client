@@ -79,9 +79,9 @@ const Publishers = () => {
                     {/* head */}
                     <thead>
                         <tr>
-                            <th>#</th>
+                            <th className="hidden md:table-cell">#</th>
                             <th>Image</th>
-                            <th>Name</th>
+                            <th className="hidden md:table-cell">Email</th>
                             <th>Delete</th>
                         </tr>
                     </thead>

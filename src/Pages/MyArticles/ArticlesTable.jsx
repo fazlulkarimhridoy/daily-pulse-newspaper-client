@@ -4,6 +4,11 @@ import { Link } from "react-router-dom";
 const ArticlesTable = ({ data, index, handleDelete }) => {
     // hooks and states
     const { _id, title, image, tag, publisher, isPremium, status, cancelationText } = data;
+    console.log("id", _id);
+    console.log("text", cancelationText);
+    console.log("isPremium", isPremium);
+    console.log("status", status);
+    const id = _id;
 
 
     return (
@@ -56,26 +61,38 @@ const ArticlesTable = ({ data, index, handleDelete }) => {
                         </p>
                         {/* Open the modal using document.getElementById('ID').showModal() method */}
                         {
-                            cancelationText && <button
-                                className="btn btn-sm rounded-full"
-                                onClick={() => {
-                                    document.getElementById('my_modal_5').showModal()
-                                }}>
-                                <FaCommentAlt></FaCommentAlt>
-                            </button>
+                            cancelationText && <>
+                                <button
+                                    className="btn btn-sm rounded-full"
+                                    onClick={() => {
+                                        // document.getElementById('my_modal_5').showModal()
+                                        document.getElementById(`my_modal_${id}`).showModal()
+                                    }}>
+                                    <FaCommentAlt></FaCommentAlt>
+                                    {
+                                        console.log("text", cancelationText)
+                                    }
+                                </button>
+                                {/* <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle"> */}
+                                <dialog id={`my_modal_${id}`} className="modal modal-bottom sm:modal-middle">
+                                    {
+                                        console.log("text", cancelationText)
+
+                                    }
+                                    <div className="modal-box">
+                                        <p className="py-4 text-xl font-semibold">{cancelationText}</p>
+                                        <div className="modal-action">
+                                            <form method="dialog">
+                                                {/* if there is a button in form, it will close the modal */}
+                                                <button className="btn text-red-600"> {cancelationText} Go back</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </dialog>
+                            </>
                         }
 
-                        <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
-                            <div className="modal-box">
-                                <p className="py-4 text-xl font-semibold">{cancelationText}</p>
-                                <div className="modal-action">
-                                    <form method="dialog">
-                                        {/* if there is a button in form, it will close the modal */}
-                                        <button className="btn text-red-600">Go back</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </dialog>
+
                     </div>
                 }
             </td>

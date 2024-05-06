@@ -68,7 +68,7 @@ const NavBar = () => {
 
 
     return (
-        <div className="container navbar py-0 px-4 bg-emerald-600">
+        <div className="navbar py-0 px-4 bg-emerald-600">
             <div className="navbar-start">
                 {/* drop down menu in image for small devices */}
                 <div className="dropdown">

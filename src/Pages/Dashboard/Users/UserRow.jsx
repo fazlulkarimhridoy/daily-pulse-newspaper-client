@@ -4,10 +4,10 @@ const UserRow = ({ data, index, handleUpdate, handleDelete, update }) => {
     const { _id, name, image, email, role, premiumUser } = data;
     return (
         <tr>
-            <th>
+            <th className="hidden md:table-cell">
                 {index + 1}
             </th>
-            <td>
+            <td className="hidden md:table-cell">
                 <div className="flex items-center gap-3">
                     <div className="avatar">
                         <div className="mask mask-squircle w-12 h-12">
@@ -20,9 +20,9 @@ const UserRow = ({ data, index, handleUpdate, handleDelete, update }) => {
                 </div>
             </td>
             <td>
-                <div className="text-gray-600 font-bold">{email}</div>
+                <div className="text-gray-600 font-bold text-[11px] sm:text-base">{email}</div>
             </td>
-            <td>
+            <td className="hidden md:table-cell">
                 {
                     premiumUser === "true" ?
                         <p className="text-pink-600 font-bold">Premium</p> :

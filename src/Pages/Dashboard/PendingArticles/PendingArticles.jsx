@@ -101,12 +101,12 @@ const PendingArticles = () => {
                     {/* head */}
                     <thead>
                         <tr>
-                            <th>#</th>
+                            <th className="hidden md:table-cell">#</th>
                             <th>Title & image</th>
-                            <th>Publisher name</th>
-                            <th>Premium</th>
+                            <th className="hidden md:table-cell">Publisher name</th>
+                            <th className="hidden md:table-cell">Premium</th>
                             <th>Status</th>
-                            <th>View</th>
+                            <th className="hidden md:table-cell">View</th>
                             <th>Delete</th>
                         </tr>
                     </thead>

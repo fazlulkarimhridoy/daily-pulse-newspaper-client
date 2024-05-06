@@ -4,7 +4,7 @@ const PublisherRow = ({ data, index, handleDelete }) => {
     const { _id, publisher, publisherImage, email } = data;
     return (
         <tr>
-            <th>
+            <th className="hidden md:table-cell">
                 {index + 1}
             </th>
             <td>
@@ -19,7 +19,7 @@ const PublisherRow = ({ data, index, handleDelete }) => {
                     </div>
                 </div>
             </td>
-            <td>
+            <td className="hidden md:table-cell">
                 <div className="text-gray-600 font-bold">{email}</div>
             </td>
             <td>

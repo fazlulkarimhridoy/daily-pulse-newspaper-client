@@ -41,7 +41,7 @@ const AdminDashboard = () => {
         <div>
             {/* user stats */}
             <div className="flex">
-                <div className=" w-3/4 mx-auto stats stats-vertical lg:stats-horizontal">
+                <div className="w-full lg:w-3/4 mx-auto stats stats-vertical md:stats-horizontal">
                     {/* all users stats */}
                     <div className="stat bg-green-100">
                         <div className="stat-title">All Users</div>
@@ -63,7 +63,7 @@ const AdminDashboard = () => {
                 </div>
             </div>
             {/* pie chart for publications count */}
-            <div className="pt-4 w-3/4 mx-auto">
+            <div className="pt-4 w-full lg:w-3/4 mx-auto">
                 <Chart
                     chartType="PieChart"
                     data={data}
@@ -72,7 +72,7 @@ const AdminDashboard = () => {
                     height={"400px"}
                 />
             </div>
-            <div className="flex justify-between mx-auto w-3/4 pt-4 gap-2">
+            <div className="flex flex-col md:flex-row justify-between mx-auto w-full lg:w-3/4 pt-4 gap-2 mb-20 md:mb-0">
                 {/* column chart */}
                 <div className="w-full">
                     <Chart

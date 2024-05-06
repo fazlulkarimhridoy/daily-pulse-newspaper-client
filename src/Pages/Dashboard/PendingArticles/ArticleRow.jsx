@@ -34,7 +34,7 @@ const ArticleRow = ({ data, index, handleUpdate, handleDelete, update, refetch }
 
     return (
         <tr>
-            <th>
+            <th className="hidden md:table-cell">
                 {index + 1}
             </th>
             <td>
@@ -50,10 +50,10 @@ const ArticleRow = ({ data, index, handleUpdate, handleDelete, update, refetch }
                     </div>
                 </div>
             </td>
-            <td>
+            <td className="hidden md:table-cell">
                 <div className="text-gray-600 font-bold">{publisher}</div>
             </td>
-            <td>
+            <td className="hidden md:table-cell">
                 {
                     isPremium ?
                         <div className="text-green-600 font-bold hidden lg:flex">Yes</div>
@@ -106,7 +106,7 @@ const ArticleRow = ({ data, index, handleUpdate, handleDelete, update, refetch }
 
                 </div>
             </td>
-            <td>
+            <td className="hidden md:table-cell">
                 <Link to={`/articleDetails/${_id}`}>
                     <button className="btn btn-circle btn-outline btn-sm">
                         <FaEye></FaEye>
