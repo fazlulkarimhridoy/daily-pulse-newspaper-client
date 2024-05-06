@@ -100,7 +100,7 @@ const Users = () => {
                     {/* head */}
                     <thead>
                         <tr>
-                            <th className="hidden md:table-cell">#</th>
+                            <th className="hidden lg:table-cell">#</th>
                             <th className="hidden md:table-cell">Name & image</th>
                             <th>User email</th>
                             <th className="hidden md:table-cell">Status</th>

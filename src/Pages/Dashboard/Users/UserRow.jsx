@@ -4,7 +4,7 @@ const UserRow = ({ data, index, handleUpdate, handleDelete, update }) => {
     const { _id, name, image, email, role, premiumUser } = data;
     return (
         <tr>
-            <th className="hidden md:table-cell">
+            <th className="hidden lg:table-cell">
                 {index + 1}
             </th>
             <td className="hidden md:table-cell">

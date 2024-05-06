@@ -80,7 +80,7 @@ const Dash = () => {
                         scrollbarWidth: "none",
                         msOverflowStyle: "none",
                     }}
-                    className="flex-1 bg-green-50 p-2 md:p-8 lg:p-12 mb-10 lg:mb-0">
+                    className="flex-1 bg-green-50 min-h-screen p-2 md:p-8 lg:p-12 mb-10 lg:mb-0">
                     <Outlet></Outlet>
                 </div>
 
