@@ -59,7 +59,7 @@ const AllArticles = () => {
             </div> */}
 
             {/* search bar */}
-            <div className="relative w-1/3 mx-auto pt-10">
+            <div className="relative w-[80%] md:w-2/3 lg:w-1/3 mx-auto pt-10">
                 <label htmlFor="Search" className="sr-only"> Search </label>
 
                 <form onSubmit={handleSubmit(onSubmit)}>

@@ -95,7 +95,7 @@ const Users = () => {
             <div>
                 <h3 className="text-center pt-4 text-gray-400 text-4xl font-semibold">All Users</h3>
             </div>
-            <div className="overflow-x-auto bg-green-50 pt-4">
+            <div className="overflow-x-auto bg-green-50 pt-4 mb-5 md:mb-0">
                 <table className="table">
                     {/* head */}
                     <thead>

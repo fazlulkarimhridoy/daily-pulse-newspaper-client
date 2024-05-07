@@ -39,6 +39,7 @@ const AdminDashboard = () => {
 
     return (
         <div>
+            <h1 className="text-4xl text-gray-400 font-semibold text-center my-5">All Stats</h1>
             {/* user stats */}
             <div className="flex">
                 <div className="w-full lg:w-3/4 mx-auto stats stats-vertical md:stats-horizontal">
@@ -72,7 +73,7 @@ const AdminDashboard = () => {
                     height={"400px"}
                 />
             </div>
-            <div className="flex flex-col md:flex-row justify-between mx-auto w-full lg:w-3/4 pt-4 gap-2 mb-20 md:mb-0">
+            <div className="flex flex-col md:flex-row justify-between mx-auto w-full lg:w-3/4 pt-4 gap-2 mb-5 md:mb-0">
                 {/* column chart */}
                 <div className="w-full">
                     <Chart

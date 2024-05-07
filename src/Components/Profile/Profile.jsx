@@ -65,7 +65,7 @@ const Profile = () => {
     return (
         <div className="flex flex-col lg:flex-row justify-center gap-10 px-10 py-32">
             {/* user info */}
-            <Card className="max-w-[250px] p-6">
+            <Card className="max-w-[250px] mx-auto sm:mx-0 p-6">
                 <Card.Container className="flex items-center justify-center">
                     <Avatar
                         shape="circle"

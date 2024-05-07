@@ -76,7 +76,7 @@ const SingleArticle = ({ data, isBanner }) => {
             </div>
 
             {/* title, description & subscription time */}
-            <div className={`px-6 ${isBanner ? "h-24" : "h-28"}`}>
+            <div className={`px-6 ${isBanner ? "h-32" : "h-32"}`}>
                 <h5 className="block mb-2 font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
                     {title}
                 </h5>
