@@ -80,7 +80,7 @@ const Dash = () => {
                         scrollbarWidth: "none",
                         msOverflowStyle: "none",
                     }}
-                    className="flex-1 bg-green-50 min-h-screen p-2 md:p-8 lg:p-12 mb-10 lg:mb-0">
+                    className="flex-1 bg-green-50 min-h-screen p-2 md:p-8 lg:p-12 lg:mb-0">
                     <Outlet></Outlet>
                 </div>
 
@@ -92,7 +92,7 @@ const Dash = () => {
                 </ul>
             </div>
             {/* for small devices */}
-            <div className="flex md:hidden w-full absolute bottom-0 bg-green-200">
+            <div className="flex md:hidden w-full bottom-0 sticky bg-green-200">
                 <ul id="link1" className="menu menu-horizontal text-[22.5px] px-1 gap-2 text-gray-500">
                     {linksForMobile}
                 </ul>
