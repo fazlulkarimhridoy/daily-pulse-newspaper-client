@@ -1,8 +1,10 @@
 import { Link, NavLink, Outlet } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
-import { FaAddressBook, FaBook, FaCircleNotch, FaHome, FaSignOutAlt, FaUserPlus, FaUsers } from "react-icons/fa";
+import { FaAddressBook, FaBook, FaHome, FaSignOutAlt, FaUserPlus, FaUsers } from "react-icons/fa";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import { RxDashboard } from "react-icons/rx";
+
 
 const Dash = () => {
     // states and hooks
@@ -22,22 +24,22 @@ const Dash = () => {
     const { name, image } = userDB;
     const links =
         <>
-            <li><NavLink to="adminHome"><FaCircleNotch></FaCircleNotch>Dashboard</NavLink></li>
-            <li><NavLink to="pendingArticles"><FaBook></FaBook>All Articles</NavLink></li>
-            <li><NavLink to="users"><FaUsers></FaUsers>All Users</NavLink></li>
-            <li><NavLink to="publishers"><FaAddressBook></FaAddressBook>All Publishers</NavLink></li>
-            <li><NavLink to="addPublishers"><FaUserPlus></FaUserPlus>Add Publisher</NavLink></li>
-            <li><NavLink to="/"><FaHome></FaHome>Home</NavLink></li>
+            <li><NavLink to="adminHome"><RxDashboard />Dashboard</NavLink></li>
+            <li><NavLink to="pendingArticles"><FaBook />All Articles</NavLink></li>
+            <li><NavLink to="users"><FaUsers />All Users</NavLink></li>
+            <li><NavLink to="publishers"><FaAddressBook />All Publishers</NavLink></li>
+            <li><NavLink to="addPublishers"><FaUserPlus />Add Publisher</NavLink></li>
+            <li><NavLink to="/"><FaHome />Home</NavLink></li>
         </>
 
     const linksForMobile =
         <>
-            <li><NavLink to="adminHome"><FaCircleNotch></FaCircleNotch></NavLink></li>
-            <li><NavLink to="pendingArticles"><FaBook></FaBook></NavLink></li>
-            <li><NavLink to="users"><FaUsers></FaUsers></NavLink></li>
-            <li><NavLink to="publishers"><FaAddressBook></FaAddressBook></NavLink></li>
-            <li><NavLink to="addPublishers"><FaUserPlus></FaUserPlus></NavLink></li>
-            <li><NavLink to="/"><FaHome></FaHome></NavLink></li>
+            <li><NavLink to="adminHome"><RxDashboard /></NavLink></li>
+            <li><NavLink to="pendingArticles"><FaBook /></NavLink></li>
+            <li><NavLink to="users"><FaUsers /></NavLink></li>
+            <li><NavLink to="publishers"><FaAddressBook /></NavLink></li>
+            <li><NavLink to="addPublishers"><FaUserPlus /></NavLink></li>
+            <li><NavLink to="/"><FaHome /></NavLink></li>
         </>
     return (
         <div className="relative container mx-auto">

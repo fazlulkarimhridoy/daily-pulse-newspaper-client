@@ -1,10 +1,12 @@
 import { Link, NavLink } from "react-router-dom";
 import "./Navbar.css"
-import { FaSignInAlt, FaSignOutAlt } from "react-icons/fa";
+import { FaRegUser, FaSignInAlt, FaSignOutAlt } from "react-icons/fa";
 import useAdmin from "../../hooks/useAdmin";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../hooks/useAuth";
+import { FaPowerOff } from "react-icons/fa6";
+
 
 
 const NavBar = () => {
@@ -107,27 +109,23 @@ const NavBar = () => {
                                     }
                                     <button>
 
-                                        <img className="w-[40px] h-[40px] mr-2 rounded-full border-2"
+                                        <img className="w-[40px] h-[40px] mr-2 rounded-full border-2 border-gray-400 hover:border-gray-700"
                                             src={image}
                                             alt="user_photo" />
                                     </button>
                                 </div>
                             </label>
-                            <ul tabIndex={0} className="dropdown-content z-[1] p-4 shadow bg-green-50 rounded-box w-60">
-
-
-                                {/* <li className="p-3 text-center font-medium rounded-lg mb-3 bg-gray-300">{fullName}</li> */}
-                                <li className="p-3 text-white text-center font-medium rounded-lg mb-3 bg-amber-600">{name || "No Name"}</li>
-                                {/* <li className="p-3 text-center font-medium rounded-lg mb-3 bg-gray-300">{email}</li> */}
-                                <li><Link to="/profile" className="btn w-full mb-3 border text-white bg-lime-600">Visit Profile</Link></li>
-                                <li><button onClick={handleLogout} className="btn w-full bg-orange-700 text-white hover:bg-yellow-500">
-                                    <FaSignOutAlt></FaSignOutAlt>
-                                    Logout
-                                </button>
+                            <ul tabIndex={0} className="bg-white dropdown-content mt-2 z-[1] w-[150px] p-1 rounded-md">
+                                <Link to="/profile">
+                                    <li className="flex items-center gap-3 text-sm py-1.5 px-3 border-2 border-white hover:border-2 hover:rounded hover:border-black hover:transition-all hover:duration-200 hover:bg-gray-200 w-full font-semibold text-gray-600">
+                                        <FaRegUser />Profile Info
+                                    </li>
+                                </Link>
+                                <li className="mt-2">
+                                    <button onClick={handleLogout} className="flex items-center gap-3 px-3 border-2 border-white hover:border-2 hover:rounded hover:border-black hover:transition-all hover:duration-200 hover:bg-red-100 w-full py-1.5 font-semibold text-red-600 text-sm">
+                                        <FaPowerOff /> Sign Out
+                                    </button>
                                 </li>
-
-
-
                             </ul>
                         </div>
                         :
