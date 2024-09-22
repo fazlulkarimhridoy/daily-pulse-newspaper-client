@@ -29,7 +29,7 @@ const Publishers = () => {
                     {
                         allPublisher?.map(item => <div key={item._id} className="space-y-4">
                             <img
-                                className="object-cover h-56 w-56 mx-auto mb-4 bg-center rounded-sm bg-gray-500"
+                                className="object-cover h-56 w-56 mx-auto mb-4 bg-center rounded-lg bg-white"
                                 src={item.publisherImage}
                             />
                             <div className="flex flex-col items-center">

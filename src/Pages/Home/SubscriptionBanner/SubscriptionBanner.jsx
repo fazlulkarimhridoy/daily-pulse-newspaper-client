@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
+import subscriptionImage from "../../../assets/offer-image.jpg"
 
 const SubscriptionBanner = () => {
     // states and hooks
@@ -106,9 +107,9 @@ const SubscriptionBanner = () => {
 
                         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                             <img
-                                alt="Subscription"
-                                src="https://i.ibb.co/5T9T5Cd/subscribe-label-or-sticker-vector-28328286.jpg"
-                                className="h-full w-3/4 rounded-xl object-cover"
+                                alt="Subscription-image"
+                                src={subscriptionImage}
+                                className="h-full w-full rounded-xl object-cover"
                             />
 
                             <div>
